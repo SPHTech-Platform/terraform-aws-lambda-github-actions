@@ -34,9 +34,3 @@ output "lambda_role_unique_id" {
   description = "The unique id of the IAM role created for the Lambda Function"
   value       = module.lambda.lambda_role_unique_id
 }
-
-# Github Actions
-output "github_actions_role_arn" {
-  description = "Role ARN used by the Github Actions"
-  value       = module.github_actions_repo.role
-}
