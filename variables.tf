@@ -104,3 +104,19 @@ variable "addition_lambda_policy" {
   type        = list(string)
   default     = []
 }
+
+variable "additional_lambda_policy_statements" {
+  description = "Additional Inline Lambda Policy Statements"
+  type        = any
+  default     = {}
+}
+
+variable "vpc_subnet_ids" {
+  description = "List of Subnet Ids"
+  type        = list(string)
+}
+
+variable "vpc_security_group_ids" {
+  description = "Listof Security Groups"
+  type        = list(string)
+}
