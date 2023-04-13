@@ -50,7 +50,7 @@ Terraform module for creating the lambda and the github actions IAM Role deploye
 | <a name="input_create_gha_deployer"></a> [create\_gha\_deployer](#input\_create\_gha\_deployer) | Flag for creating Github Actions Deployer deployer | `bool` | `true` | no |
 | <a name="input_function_description"></a> [function\_description](#input\_function\_description) | Lambda Function Description | `string` | `""` | no |
 | <a name="input_function_index_handler"></a> [function\_index\_handler](#input\_function\_index\_handler) | Lambda Function Index Handler | `string` | `"index.handler"` | no |
-| <a name="input_function_name"></a> [function\_name](#input\_function\_name) | Lambda Function Name | `string` | `""` | no |
+| <a name="input_function_name"></a> [function\_name](#input\_function\_name) | Lambda Function Name | `string` | n/a | yes |
 | <a name="input_function_prefix"></a> [function\_prefix](#input\_function\_prefix) | Prefix for the IAM role for lambda functions | `string` | `""` | no |
 | <a name="input_github_branches"></a> [github\_branches](#input\_github\_branches) | List of github branches allowed for oidc subject claims. | `list(string)` | `[]` | no |
 | <a name="input_github_environments"></a> [github\_environments](#input\_github\_environments) | (Optional) Allow GitHub action to deploy to all (default) or to one of the environments in the list. | `list(string)` | <pre>[<br>  "*"<br>]</pre> | no |

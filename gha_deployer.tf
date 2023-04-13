@@ -28,7 +28,7 @@ module "github_actions_repo" {
   default_conditions          = ["allow_environment", "allow_main"]
   github_environments         = var.github_environments
 
-  conditions = (var.github_branches != []) ? [
+  conditions = (length(var.github_branches) > 0) ? [
     {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
