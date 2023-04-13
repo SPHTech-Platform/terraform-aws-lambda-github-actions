@@ -15,7 +15,6 @@ variable "app_metadata" {
 variable "function_name" {
   description = "Lambda Function Name"
   type        = string
-  default     = ""
 }
 
 variable "function_description" {
