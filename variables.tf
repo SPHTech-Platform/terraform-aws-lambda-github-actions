@@ -15,7 +15,6 @@ variable "app_metadata" {
 variable "function_name" {
   description = "Lambda Function Name"
   type        = string
-  default     = ""
 }
 
 variable "function_description" {
@@ -103,4 +102,26 @@ variable "addition_lambda_policy" {
   description = "List of additional policies for the lambda execution"
   type        = list(string)
   default     = []
+}
+
+variable "additional_lambda_policy_statements" {
+  description = "Additional Inline Lambda Policy Statements"
+  type        = any
+  default     = {}
+}
+
+variable "vpc_subnet_ids" {
+  description = "List of Subnet Ids"
+  type        = list(string)
+}
+
+variable "vpc_security_group_ids" {
+  description = "Listof Security Groups"
+  type        = list(string)
+}
+
+variable "attach_network_policy" {
+  description = "Flag to attach network policy to use VPC subnet and security group"
+  type        = bool
+  default     = true
 }

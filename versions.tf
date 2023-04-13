@@ -7,5 +7,6 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 4.27"
     }
+    archive = "~> 1.3"
   }
 }
