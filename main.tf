@@ -32,5 +32,5 @@ module "lambda" {
 
   vpc_subnet_ids         = var.vpc_subnet_ids
   vpc_security_group_ids = var.vpc_security_group_ids
-  attach_network_policy  = true
+  attach_network_policy  = var.attach_network_policy
 }

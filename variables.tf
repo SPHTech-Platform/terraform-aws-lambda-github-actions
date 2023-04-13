@@ -119,3 +119,9 @@ variable "vpc_security_group_ids" {
   description = "Listof Security Groups"
   type        = list(string)
 }
+
+variable "attach_network_policy" {
+  description = "Flag to attach network policy to use VPC subnet and security group"
+  type        = bool
+  default     = true
+}
