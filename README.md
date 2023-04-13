@@ -15,7 +15,7 @@ Terraform module for creating the lambda and the github actions IAM Role deploye
 | Name | Version |
 |------|---------|
 | <a name="provider_archive"></a> [archive](#provider\_archive) | 2.3.0 |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.58.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.62.0 |
 
 ## Modules
 
@@ -42,6 +42,7 @@ Terraform module for creating the lambda and the github actions IAM Role deploye
 |------|-------------|------|---------|:--------:|
 | <a name="input_addition_lambda_policy"></a> [addition\_lambda\_policy](#input\_addition\_lambda\_policy) | List of additional policies for the lambda execution | `list(string)` | `[]` | no |
 | <a name="input_additional_deployer_role"></a> [additional\_deployer\_role](#input\_additional\_deployer\_role) | (Optional) Additional Deployer Policy Role | `list(any)` | `[]` | no |
+| <a name="input_additional_lambda_policy_statements"></a> [additional\_lambda\_policy\_statements](#input\_additional\_lambda\_policy\_statements) | Additional Inline Lambda Policy Statements | `any` | `{}` | no |
 | <a name="input_allowed_triggers"></a> [allowed\_triggers](#input\_allowed\_triggers) | Map of allowed triggers to create Lambda permissions | `map(any)` | `{}` | no |
 | <a name="input_app_metadata"></a> [app\_metadata](#input\_app\_metadata) | Application component prefix, name used to generate resource names | <pre>object({<br>    prefix = string<br>    name   = string<br>    env    = string<br>  })</pre> | n/a | yes |
 | <a name="input_authorization_type"></a> [authorization\_type](#input\_authorization\_type) | The type of authentication that the Lambda Function URL uses. Set to 'AWS\_IAM' to restrict access to authenticated IAM users only. Set to 'NONE' to bypass IAM authentication and create a public endpoint. | `string` | `"AWS_IAM"` | no |
@@ -57,6 +58,8 @@ Terraform module for creating the lambda and the github actions IAM Role deploye
 | <a name="input_lambda_environment_variables"></a> [lambda\_environment\_variables](#input\_lambda\_environment\_variables) | A map that defines environment variables for the Lambda Function. | `map(string)` | `{}` | no |
 | <a name="input_lambda_runtime"></a> [lambda\_runtime](#input\_lambda\_runtime) | Lambda Function runtime | `string` | `"nodejs18.x"` | no |
 | <a name="input_role_name"></a> [role\_name](#input\_role\_name) | (Optional) role name of the created role, if not provided the github\_repo will be used to generate. | `string` | `null` | no |
+| <a name="input_vpc_security_group_ids"></a> [vpc\_security\_group\_ids](#input\_vpc\_security\_group\_ids) | Listof Security Groups | `list(string)` | n/a | yes |
+| <a name="input_vpc_subnet_ids"></a> [vpc\_subnet\_ids](#input\_vpc\_subnet\_ids) | List of Subnet Ids | `list(string)` | n/a | yes |
 
 ## Outputs
 
