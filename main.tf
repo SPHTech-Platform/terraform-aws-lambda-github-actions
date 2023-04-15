@@ -13,7 +13,7 @@ module "lambda" {
 
   function_name = var.function_name
   description   = var.description
-  lambda_role   = var.labmda_role
+  lambda_role   = var.lambda_role
 
   create_package = false
 
