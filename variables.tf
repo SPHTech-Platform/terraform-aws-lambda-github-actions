@@ -54,12 +54,6 @@ variable "github_environments" {
   default     = ["*"]
 }
 
-variable "github_branches" {
-  description = "List of github branches allowed for oidc subject claims."
-  type        = list(string)
-  default     = []
-}
-
 # Refer https://github.com/terraform-aws-modules/terraform-aws-lambda/blob/master/variables.tf for additional vars
 ##################
 # Lambda Function
@@ -217,7 +211,6 @@ variable "snap_start" {
   type        = bool
   default     = false
 }
-
 
 ############################################
 # Lambda Permissions (for allowed triggers)
