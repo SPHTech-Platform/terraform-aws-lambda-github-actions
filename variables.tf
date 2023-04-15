@@ -60,12 +60,6 @@ variable "github_branches" {
   default     = []
 }
 
-variable "additional_github_action_policies" {
-  description = "(Optional) Additional Github Action AWS IAM Role Policies."
-  type        = list(any)
-  default     = []
-}
-
 # Refer https://github.com/terraform-aws-modules/terraform-aws-lambda/blob/master/variables.tf for additional vars
 ##################
 # Lambda Function

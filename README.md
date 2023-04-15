@@ -34,7 +34,6 @@ Terraform module for creating the lambda and the github actions IAM Role deploye
 | [archive_file.dummy](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file) | data source |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_openid_connect_provider.github](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_openid_connect_provider) | data source |
-| [aws_iam_policy_document.deployer_concat](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.update_lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 
@@ -43,7 +42,6 @@ Terraform module for creating the lambda and the github actions IAM Role deploye
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_addition_lambda_policy"></a> [addition\_lambda\_policy](#input\_addition\_lambda\_policy) | List of additional policies for the lambda execution | `list(string)` | `[]` | no |
-| <a name="input_additional_github_action_policies"></a> [additional\_github\_action\_policies](#input\_additional\_github\_action\_policies) | (Optional) Additional Github Action AWS IAM Role Policies. | `list(any)` | `[]` | no |
 | <a name="input_additional_lambda_policy_statements"></a> [additional\_lambda\_policy\_statements](#input\_additional\_lambda\_policy\_statements) | Additional Inline Lambda Policy Statements | `any` | `{}` | no |
 | <a name="input_allowed_triggers"></a> [allowed\_triggers](#input\_allowed\_triggers) | Map of allowed triggers to create Lambda permissions | `map(any)` | `{}` | no |
 | <a name="input_architectures"></a> [architectures](#input\_architectures) | Instruction set architecture for your Lambda function. Valid values are ["x86\_64"] and ["arm64"]. | `list(string)` | `null` | no |
