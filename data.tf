@@ -6,7 +6,7 @@ data "aws_caller_identity" "current" {}
 
 data "aws_region" "current" {}
 
-data "aws_iam_policy_document" "deployer" {
+data "aws_iam_policy_document" "update_lambda" {
   statement {
     sid = "ReadLambda"
 
@@ -31,5 +31,5 @@ data "aws_iam_policy_document" "deployer" {
 data "aws_iam_policy_document" "deployer_concat" {
   source_policy_documents = concat([
     data.aws_iam_policy_document.deployer.json,
-  ], var.additional_deployer_role)
+  ], var.additional_github_action_policies)
 }
