@@ -38,22 +38,6 @@ variable "default_conditions" {
   default     = ["allow_main", "allow_environment"]
 }
 
-variable "conditions" {
-  description = "(Optional) Additonal conditions for checking the OIDC claim."
-  type = list(object({
-    test     = string
-    variable = string
-    values   = list(string)
-  }))
-  default = []
-}
-
-variable "github_environments" {
-  description = "(Optional) Allow GitHub action to deploy to all (default) or to one of the environments in the list."
-  type        = list(string)
-  default     = ["*"]
-}
-
 # Refer https://github.com/terraform-aws-modules/terraform-aws-lambda/blob/master/variables.tf for additional vars
 ##################
 # Lambda Function

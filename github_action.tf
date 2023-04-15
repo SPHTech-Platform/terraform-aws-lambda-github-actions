@@ -18,7 +18,7 @@ module "lamda_gha" {
 
   default_conditions = var.default_conditions
 
-  conditions = (var.github_repo.branches != []) ? [
+  conditions = length(var.github_repo.branches) != 0 ? [
     {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
