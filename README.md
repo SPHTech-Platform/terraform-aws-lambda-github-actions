@@ -41,8 +41,6 @@ Terraform module for creating the lambda and the github actions IAM Role deploye
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_additional_lambda_policy"></a> [additional\_lambda\_policy](#input\_additional\_lambda\_policy) | List of additional policies for the lambda execution | `list(string)` | `[]` | no |
-| <a name="input_additional_lambda_policy_statements"></a> [additional\_lambda\_policy\_statements](#input\_additional\_lambda\_policy\_statements) | Additional Inline Lambda Policy Statements | `any` | `{}` | no |
 | <a name="input_allowed_triggers"></a> [allowed\_triggers](#input\_allowed\_triggers) | Map of allowed triggers to create Lambda permissions | `map(any)` | `{}` | no |
 | <a name="input_architectures"></a> [architectures](#input\_architectures) | Instruction set architecture for your Lambda function. Valid values are ["x86\_64"] and ["arm64"]. | `list(string)` | `null` | no |
 | <a name="input_attach_network_policy"></a> [attach\_network\_policy](#input\_attach\_network\_policy) | Flag to attach network policy to use VPC subnet and security group | `bool` | `false` | no |
@@ -74,6 +72,8 @@ Terraform module for creating the lambda and the github actions IAM Role deploye
 | <a name="input_layers"></a> [layers](#input\_layers) | List of Lambda Layer Version ARNs (maximum of 5) to attach to your Lambda Function. | `list(string)` | `null` | no |
 | <a name="input_memory_size"></a> [memory\_size](#input\_memory\_size) | Amount of memory in MB your Lambda Function can use at runtime. Valid value between 128 MB to 10,240 MB (10 GB), in 64 MB increments. | `number` | `128` | no |
 | <a name="input_package_type"></a> [package\_type](#input\_package\_type) | The Lambda deployment package type. Valid options: Zip or Image | `string` | `"Zip"` | no |
+| <a name="input_policy_jsons"></a> [policy\_jsons](#input\_policy\_jsons) | List of additional policies for the lambda execution | `list(string)` | `[]` | no |
+| <a name="input_policy_statements"></a> [policy\_statements](#input\_policy\_statements) | Additional Inline Lambda Policy Statements | `any` | `{}` | no |
 | <a name="input_publish"></a> [publish](#input\_publish) | Whether to publish creation/change as new Lambda Function Version. | `bool` | `false` | no |
 | <a name="input_reserved_concurrent_executions"></a> [reserved\_concurrent\_executions](#input\_reserved\_concurrent\_executions) | The amount of reserved concurrent executions for this Lambda Function. A value of 0 disables Lambda Function from being triggered and -1 removes any concurrency limitations. Defaults to Unreserved Concurrency Limits -1. | `number` | `-1` | no |
 | <a name="input_role_name"></a> [role\_name](#input\_role\_name) | Name of IAM role to use for Lambda Function. | `string` | `null` | no |

@@ -58,7 +58,7 @@ module "lambda" {
 
   # dummy package, package is delegated to CI pipeline
   local_existing_package = data.archive_file.dummy.output_path
-  policy_jsons           = var.additional_lambda_policy
-  policy_statements      = var.additional_lambda_policy_statements
+  policy_jsons           = var.policy_jsons
+  policy_statements      = var.policy_statements
 
 }
