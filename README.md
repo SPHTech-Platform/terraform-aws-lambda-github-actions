@@ -1,6 +1,6 @@
-# Github Actions Lambda Deployer Terraform module
+# Github Actions Lambda Deployment Terraform module
 
-Terraform module for creating the lambda and the github actions IAM Role deployer to deploy the lambda code
+Terraform module for creating skeleton lambda and the github actions oidc AWS IAM role to deploy the lambda code.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
