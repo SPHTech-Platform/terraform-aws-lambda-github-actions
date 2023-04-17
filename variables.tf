@@ -238,7 +238,7 @@ variable "function_prefix" {
   default     = ""
 }
 
-variable "addition_lambda_policy" {
+variable "additional_lambda_policy" {
   description = "List of additional policies for the lambda execution"
   type        = list(string)
   default     = []

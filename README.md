@@ -41,7 +41,7 @@ Terraform module for creating the lambda and the github actions IAM Role deploye
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_addition_lambda_policy"></a> [addition\_lambda\_policy](#input\_addition\_lambda\_policy) | List of additional policies for the lambda execution | `list(string)` | `[]` | no |
+| <a name="input_additional_lambda_policy"></a> [additional\_lambda\_policy](#input\_additional\_lambda\_policy) | List of additional policies for the lambda execution | `list(string)` | `[]` | no |
 | <a name="input_additional_lambda_policy_statements"></a> [additional\_lambda\_policy\_statements](#input\_additional\_lambda\_policy\_statements) | Additional Inline Lambda Policy Statements | `any` | `{}` | no |
 | <a name="input_allowed_triggers"></a> [allowed\_triggers](#input\_allowed\_triggers) | Map of allowed triggers to create Lambda permissions | `map(any)` | `{}` | no |
 | <a name="input_architectures"></a> [architectures](#input\_architectures) | Instruction set architecture for your Lambda function. Valid values are ["x86\_64"] and ["arm64"]. | `list(string)` | `null` | no |
