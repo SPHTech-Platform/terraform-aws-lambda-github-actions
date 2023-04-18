@@ -39,19 +39,23 @@ output "lambda_role_unique_id" {
 
 #For Lambda@Edge Association with cloudfront
 output "qualified_arn" {
+  description = "The qualified arn of the lambda function to be associated with Cloudfront as a Lambda@Edge function"
   value = module.lambda.lambda_function_qualified_arn
 }
 
 #For using lambda as origin for cloudfront
 output "function_url" {
+  description = "The function url of lambda function to be able to be set as cloudfront origin"
   value = module.lambda.lambda_function_url
 }
 
 output "function_url_id" {
+  description = "The function url ID of lambda function to be able to be set as cloudfront origin"
   value = module.lambda.lambda_function_url_id
 }
 
 #To associate lambdas with api gateway integration
 output "invoke_arn" {
+  description = "The invoke arn of lambda function for APIGW integration"
   value = module.lambda.lambda_function_invoke_arn
 }
