@@ -34,3 +34,21 @@ output "lambda_role_unique_id" {
   description = "The unique id of the IAM role created for the Lambda Function"
   value       = module.lambda.lambda_role_unique_id
 }
+
+# For Lambda Edge and Cloudfront Integration
+
+output "qualified_arn" {
+  value = module.lambda.lambda_function_qualified_arn
+}
+
+output "function_url" {
+  value = module.lambda.lambda_function_url
+}
+
+output "function_url_id" {
+  value = module.lambda.lambda_function_url_id
+}
+
+output "invoke_arn" {
+  value = module.lambda.lambda_function_invoke_arn
+}
