@@ -1,5 +1,5 @@
 # test function for the lambda module
-module "home-feed" {
+module "home_feed" {
   source = "../../"
 
   create_github_actions_oidc_provider = true
