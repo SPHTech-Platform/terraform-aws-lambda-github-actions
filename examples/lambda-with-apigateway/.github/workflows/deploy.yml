@@ -2,7 +2,7 @@ name: Serverless Deploy
 
 concurrency:
   group: cd-${{ github.ref }}
-  
+
 on:
   push:
     branches:
