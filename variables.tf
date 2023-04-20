@@ -269,3 +269,9 @@ variable "attach_network_policy" {
   type        = bool
   default     = false
 }
+
+variable "number_of_policy_jsons" {
+  description = "Number of policies JSON to attach to IAM role for Lambda Function"
+  type        = number
+  default     = 0
+}
