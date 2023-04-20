@@ -60,6 +60,6 @@ module "lambda" {
   local_existing_package = data.archive_file.dummy.output_path
   policy_jsons           = var.policy_jsons
   policy_statements      = var.policy_statements
-  number_of_policy_jsons  = var.number_of_policy_jsons
+  number_of_policy_jsons = var.number_of_policy_jsons
 
 }
