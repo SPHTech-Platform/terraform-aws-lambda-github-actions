@@ -24,7 +24,7 @@ variable "github_repo" {
   type = object({
     repo         = string
     branches     = optional(list(string), [])
-    environments = optional(list(string), [])
+    environments = optional(list(string), ["*"])
 
     # Custom Role name. It will autocreate based on repo if not provided
     role_name = optional(string)
@@ -274,4 +274,16 @@ variable "number_of_policy_jsons" {
   description = "Number of policies JSON to attach to IAM role for Lambda Function"
   type        = number
   default     = 0
+}
+
+variable "attach_policy_json" {
+  description = "Controls whether policy_json should be added to IAM role for Lambda Function"
+  type        = bool
+  default     = false
+}
+
+variable "policy_json" {
+  description = "An additional policy document as JSON to attach to the Lambda Function role"
+  type        = string
+  default     = null
 }

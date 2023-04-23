@@ -52,6 +52,7 @@ module "lambda" {
 
   role_name             = var.role_name
   attach_policy_jsons   = var.attach_policy_jsons
+  attach_policy_json    = var.attach_policy_json
   attach_network_policy = var.attach_network_policy
 
   ignore_source_code_hash = true
@@ -59,6 +60,7 @@ module "lambda" {
   # dummy package, package is delegated to CI pipeline
   local_existing_package = data.archive_file.dummy.output_path
   policy_jsons           = var.policy_jsons
+  policy_json            = var.policy_json
   policy_statements      = var.policy_statements
   number_of_policy_jsons = var.number_of_policy_jsons
 
