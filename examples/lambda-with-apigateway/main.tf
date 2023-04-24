@@ -2,8 +2,9 @@
 module "home_feed" {
   source = "../../"
 
-  create_github_actions_oidc_provider = true
-  create_lambda_function_url          = true
+  create_github_actions_oidc_provider     = true
+  create_lambda_function_url              = true
+  create_current_version_allowed_triggers = false
 
   github_repo = {
     repo = "SPHTech-Platform/home-feed"
