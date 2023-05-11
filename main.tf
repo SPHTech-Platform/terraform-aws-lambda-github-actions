@@ -64,4 +64,5 @@ module "lambda" {
   policy_statements      = var.policy_statements
   number_of_policy_jsons = var.number_of_policy_jsons
 
+  cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
 }
