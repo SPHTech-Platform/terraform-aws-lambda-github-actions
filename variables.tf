@@ -243,6 +243,12 @@ variable "policy_jsons" {
   default     = []
 }
 
+variable "attach_policy_statements" {
+  description = "Controls whether policy_jsons should be added to IAM role for Lambda Function"
+  type        = bool
+  default     = false
+}
+
 variable "policy_statements" {
   description = "Additional Inline Lambda Policy Statements"
   type        = any

@@ -50,10 +50,11 @@ module "lambda" {
   authorization_type                           = var.authorization_type
   cors                                         = var.cors
 
-  role_name             = var.role_name
-  attach_policy_jsons   = var.attach_policy_jsons
-  attach_policy_json    = var.attach_policy_json
-  attach_network_policy = var.attach_network_policy
+  role_name                = var.role_name
+  attach_policy_jsons      = var.attach_policy_jsons
+  attach_policy_json       = var.attach_policy_json
+  attach_policy_statements = var.attach_policy_statements
+  attach_network_policy    = var.attach_network_policy
 
   ignore_source_code_hash = true
 
