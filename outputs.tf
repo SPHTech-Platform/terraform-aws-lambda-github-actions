@@ -40,6 +40,12 @@ output "lambda_role_unique_id" {
   value       = module.lambda.lambda_role_unique_id
 }
 
+# IAM Role for GHA
+output "lamda_gha_role_name" {
+  description = "The crated role that can be assumed for the configured repository."
+  value       = module.lamda_gha[0].role.name
+}
+
 # For Lambda Edge and Cloudfront Integration
 
 #For Lambda@Edge Association with cloudfront
