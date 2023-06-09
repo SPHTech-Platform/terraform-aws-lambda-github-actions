@@ -7,6 +7,7 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 data "aws_iam_policy_document" "update_lambda" {
+  #checkov:skip=CKV_AWS_356: Read only
   statement {
     sid = "ReadLambda"
 
