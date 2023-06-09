@@ -8,6 +8,11 @@ output "lambda_function_name" {
   value       = module.lambda.lambda_function_name
 }
 
+output "lambda_function_version" {
+  description = "Latest published version of Lambda Function"
+  value       = module.lambda.lambda_function_version
+}
+
 # Cloudwatch Log Group
 output "lambda_cloudwatch_log_group_arn" {
   description = "Lambda Cloudwatch Log group"
