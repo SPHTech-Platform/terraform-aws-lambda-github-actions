@@ -8,6 +8,11 @@ output "lambda_function_name" {
   value       = module.lambda.lambda_function_name
 }
 
+output "lambda_function_version" {
+  description = "Latest published version of Lambda Function"
+  value       = module.lambda.lambda_function_version
+}
+
 # Cloudwatch Log Group
 output "lambda_cloudwatch_log_group_arn" {
   description = "Lambda Cloudwatch Log group"
@@ -33,6 +38,12 @@ output "lambda_role_name" {
 output "lambda_role_unique_id" {
   description = "The unique id of the IAM role created for the Lambda Function"
   value       = module.lambda.lambda_role_unique_id
+}
+
+# IAM Role for GHA
+output "lamda_gha_role_name" {
+  description = "The crated role that can be assumed for the configured repository."
+  value       = try(module.lamda_gha[0].role.name, "")
 }
 
 # For Lambda Edge and Cloudfront Integration
