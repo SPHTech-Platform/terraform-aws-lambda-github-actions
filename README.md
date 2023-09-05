@@ -1,28 +1,23 @@
-# Github Actions Lambda Deployment Terraform module
-
-Terraform module for creating skeleton lambda and the github actions oidc AWS IAM role to deploy the lambda code.
-
-<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_archive"></a> [archive](#requirement\_archive) | ~> 1.3 |
+| <a name="requirement_archive"></a> [archive](#requirement\_archive) | ~> 2.3.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.27 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_archive"></a> [archive](#provider\_archive) | ~> 1.3 |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.27 |
+| <a name="provider_archive"></a> [archive](#provider\_archive) | 2.3.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.15.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_lambda"></a> [lambda](#module\_lambda) | terraform-aws-modules/lambda/aws | ~> 4.14.0 |
+| <a name="module_lambda"></a> [lambda](#module\_lambda) | terraform-aws-modules/lambda/aws | ~> 6.0.0 |
 | <a name="module_lamda_gha"></a> [lamda\_gha](#module\_lamda\_gha) | philips-labs/github-oidc/aws | ~> 0.7.0 |
 | <a name="module_oidc_provider"></a> [oidc\_provider](#module\_oidc\_provider) | philips-labs/github-oidc/aws//modules/provider | ~> 0.7.0 |
 
@@ -44,8 +39,12 @@ Terraform module for creating skeleton lambda and the github actions oidc AWS IA
 | <a name="input_allowed_triggers"></a> [allowed\_triggers](#input\_allowed\_triggers) | Map of allowed triggers to create Lambda permissions | `map(any)` | `{}` | no |
 | <a name="input_architectures"></a> [architectures](#input\_architectures) | Instruction set architecture for your Lambda function. Valid values are ["x86\_64"] and ["arm64"]. | `list(string)` | `null` | no |
 | <a name="input_attach_network_policy"></a> [attach\_network\_policy](#input\_attach\_network\_policy) | Flag to attach network policy to use VPC subnet and security group | `bool` | `false` | no |
+| <a name="input_attach_policies"></a> [attach\_policies](#input\_attach\_policies) | controls whether AWS managed policies should be added to IAM role for Lambda Function (e.g AWSLambdaBasicExecutionRole) | `bool` | `false` | no |
+| <a name="input_attach_policy_json"></a> [attach\_policy\_json](#input\_attach\_policy\_json) | Controls whether policy\_json should be added to IAM role for Lambda Function | `bool` | `false` | no |
 | <a name="input_attach_policy_jsons"></a> [attach\_policy\_jsons](#input\_attach\_policy\_jsons) | Controls whether policy\_jsons should be added to IAM role for Lambda Function | `bool` | `false` | no |
+| <a name="input_attach_policy_statements"></a> [attach\_policy\_statements](#input\_attach\_policy\_statements) | Controls whether policy\_jsons should be added to IAM role for Lambda Function | `bool` | `false` | no |
 | <a name="input_authorization_type"></a> [authorization\_type](#input\_authorization\_type) | The type of authentication that the Lambda Function URL uses. Set to 'AWS\_IAM' to restrict access to authenticated IAM users only. Set to 'NONE' to bypass IAM authentication and create a public endpoint. | `string` | `"NONE"` | no |
+| <a name="input_cloudwatch_logs_retention_in_days"></a> [cloudwatch\_logs\_retention\_in\_days](#input\_cloudwatch\_logs\_retention\_in\_days) | Number of days the cloudwatch logs will be retained. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653. | `number` | `7` | no |
 | <a name="input_code_signing_config_arn"></a> [code\_signing\_config\_arn](#input\_code\_signing\_config\_arn) | Amazon Resource Name (ARN) for a Code Signing Configuration | `string` | `null` | no |
 | <a name="input_cors"></a> [cors](#input\_cors) | CORS settings to be used by the Lambda Function URL | `any` | `{}` | no |
 | <a name="input_create_current_version_allowed_triggers"></a> [create\_current\_version\_allowed\_triggers](#input\_create\_current\_version\_allowed\_triggers) | Whether to allow triggers on current version of Lambda Function (this will revoke permissions from previous version because Terraform manages only current resources) | `bool` | `true` | no |
@@ -60,7 +59,7 @@ Terraform module for creating skeleton lambda and the github actions oidc AWS IA
 | <a name="input_ephemeral_storage_size"></a> [ephemeral\_storage\_size](#input\_ephemeral\_storage\_size) | Amount of ephemeral storage (/tmp) in MB your Lambda Function can use at runtime. Valid value between 512 MB to 10,240 MB (10 GB). | `number` | `512` | no |
 | <a name="input_function_name"></a> [function\_name](#input\_function\_name) | Lambda Function Name | `string` | n/a | yes |
 | <a name="input_function_prefix"></a> [function\_prefix](#input\_function\_prefix) | Prefix for the IAM role for lambda functions | `string` | `""` | no |
-| <a name="input_github_repo"></a> [github\_repo](#input\_github\_repo) | GitHub repo to grant access to assume a role via OIDC. | <pre>object({<br>    repo         = string<br>    branches     = optional(list(string), [])<br>    environments = optional(list(string), [])<br><br>    # Custom Role name. It will autocreate based on repo if not provided<br>    role_name = optional(string)<br>  })</pre> | n/a | yes |
+| <a name="input_github_repo"></a> [github\_repo](#input\_github\_repo) | GitHub repo to grant access to assume a role via OIDC. | <pre>object({<br>    repo         = string<br>    branches     = optional(list(string), [])<br>    environments = optional(list(string), ["*"])<br><br>    # Custom Role name. It will autocreate based on repo if not provided<br>    role_name = optional(string)<br>  })</pre> | n/a | yes |
 | <a name="input_handler"></a> [handler](#input\_handler) | Lambda Function Index Handler | `string` | `"index.handler"` | no |
 | <a name="input_image_config_command"></a> [image\_config\_command](#input\_image\_config\_command) | The CMD for the docker image | `list(string)` | `[]` | no |
 | <a name="input_image_config_entry_point"></a> [image\_config\_entry\_point](#input\_image\_config\_entry\_point) | The ENTRYPOINT for the docker image | `list(string)` | `[]` | no |
@@ -70,8 +69,12 @@ Terraform module for creating skeleton lambda and the github actions oidc AWS IA
 | <a name="input_lambda_at_edge"></a> [lambda\_at\_edge](#input\_lambda\_at\_edge) | Set this to true if using Lambda@Edge, to enable publishing, limit the timeout, and allow edgelambda.amazonaws.com to invoke the function | `bool` | `false` | no |
 | <a name="input_lambda_role"></a> [lambda\_role](#input\_lambda\_role) | IAM role ARN attached to the Lambda Function. This governs both who / what can invoke your Lambda Function, as well as what resources our Lambda Function has access to. See Lambda Permission Model for more details. | `string` | `""` | no |
 | <a name="input_layers"></a> [layers](#input\_layers) | List of Lambda Layer Version ARNs (maximum of 5) to attach to your Lambda Function. | `list(string)` | `null` | no |
+| <a name="input_managed_policy_arns"></a> [managed\_policy\_arns](#input\_managed\_policy\_arns) | list of AWS managed policies to attach to IAM role for Lambda Function | `list(string)` | `null` | no |
 | <a name="input_memory_size"></a> [memory\_size](#input\_memory\_size) | Amount of memory in MB your Lambda Function can use at runtime. Valid value between 128 MB to 10,240 MB (10 GB), in 64 MB increments. | `number` | `128` | no |
+| <a name="input_number_of_managed_policies"></a> [number\_of\_managed\_policies](#input\_number\_of\_managed\_policies) | number of AWS managed policies to attach to IAM role for Lambda Function | `number` | `0` | no |
+| <a name="input_number_of_policy_jsons"></a> [number\_of\_policy\_jsons](#input\_number\_of\_policy\_jsons) | Number of policies JSON to attach to IAM role for Lambda Function | `number` | `0` | no |
 | <a name="input_package_type"></a> [package\_type](#input\_package\_type) | The Lambda deployment package type. Valid options: Zip or Image | `string` | `"Zip"` | no |
+| <a name="input_policy_json"></a> [policy\_json](#input\_policy\_json) | An additional policy document as JSON to attach to the Lambda Function role | `string` | `null` | no |
 | <a name="input_policy_jsons"></a> [policy\_jsons](#input\_policy\_jsons) | List of additional policies for the lambda execution | `list(string)` | `[]` | no |
 | <a name="input_policy_statements"></a> [policy\_statements](#input\_policy\_statements) | Additional Inline Lambda Policy Statements | `any` | `{}` | no |
 | <a name="input_publish"></a> [publish](#input\_publish) | Whether to publish creation/change as new Lambda Function Version. | `bool` | `false` | no |
@@ -88,11 +91,16 @@ Terraform module for creating skeleton lambda and the github actions oidc AWS IA
 
 | Name | Description |
 |------|-------------|
+| <a name="output_function_url"></a> [function\_url](#output\_function\_url) | The function url of lambda function to be able to be set as cloudfront origin |
+| <a name="output_function_url_id"></a> [function\_url\_id](#output\_function\_url\_id) | The function url ID of lambda function to be able to be set as cloudfront origin |
+| <a name="output_invoke_arn"></a> [invoke\_arn](#output\_invoke\_arn) | The invoke arn of lambda function for APIGW integration |
 | <a name="output_lambda_cloudwatch_log_group_arn"></a> [lambda\_cloudwatch\_log\_group\_arn](#output\_lambda\_cloudwatch\_log\_group\_arn) | Lambda Cloudwatch Log group |
 | <a name="output_lambda_cloudwatch_log_group_name"></a> [lambda\_cloudwatch\_log\_group\_name](#output\_lambda\_cloudwatch\_log\_group\_name) | Lambda Cloudwatch Log group |
 | <a name="output_lambda_function_arn"></a> [lambda\_function\_arn](#output\_lambda\_function\_arn) | Lambda Function ARN |
 | <a name="output_lambda_function_name"></a> [lambda\_function\_name](#output\_lambda\_function\_name) | Lambda Function Name |
+| <a name="output_lambda_function_version"></a> [lambda\_function\_version](#output\_lambda\_function\_version) | Latest published version of Lambda Function |
 | <a name="output_lambda_role_arn"></a> [lambda\_role\_arn](#output\_lambda\_role\_arn) | ARN of the IAM role created for the Lambda Function |
 | <a name="output_lambda_role_name"></a> [lambda\_role\_name](#output\_lambda\_role\_name) | The name of the IAM role created for the Lambda Function |
 | <a name="output_lambda_role_unique_id"></a> [lambda\_role\_unique\_id](#output\_lambda\_role\_unique\_id) | The unique id of the IAM role created for the Lambda Function |
-<!-- END_TF_DOCS -->
+| <a name="output_lamda_gha_role_name"></a> [lamda\_gha\_role\_name](#output\_lamda\_gha\_role\_name) | The crated role that can be assumed for the configured repository. |
+| <a name="output_qualified_arn"></a> [qualified\_arn](#output\_qualified\_arn) | The qualified arn of the lambda function to be associated with Cloudfront as a Lambda@Edge function |

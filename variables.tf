@@ -294,6 +294,24 @@ variable "policy_json" {
   default     = null
 }
 
+variable "attach_policies" {
+  description = "Controls whether AWS managed policies should be added to IAM role for Lambda Function (e.g AWSLambdaBasicExecutionRole)"
+  type        = bool
+  default     = false
+}
+
+variable "managed_policy_arns" {
+  description = "List of AWS managed policies to attach to IAM role for Lambda Function"
+  type        = list(string)
+  default     = null
+}
+
+variable "number_of_managed_policies" {
+  description = "Number of AWS managed policies to attach to IAM role for Lambda Function"
+  type        = number
+  default     = 0
+}
+
 ##################
 # Cloudwatch Logs
 ##################
