@@ -9,7 +9,7 @@ data "archive_file" "dummy" {
 
 module "lambda" {
   source  = "terraform-aws-modules/lambda/aws"
-  version = "~> 4.14.0"
+  version = "~> 6.0.0"
 
   function_name = var.function_name
   description   = var.description
@@ -54,16 +54,19 @@ module "lambda" {
   attach_policy_jsons      = var.attach_policy_jsons
   attach_policy_json       = var.attach_policy_json
   attach_policy_statements = var.attach_policy_statements
+  attach_policies          = var.attach_policies
   attach_network_policy    = var.attach_network_policy
 
   ignore_source_code_hash = true
 
   # dummy package, package is delegated to CI pipeline
   local_existing_package = data.archive_file.dummy.output_path
+  policies               = var.managed_policy_arns
   policy_jsons           = var.policy_jsons
   policy_json            = var.policy_json
   policy_statements      = var.policy_statements
   number_of_policy_jsons = var.number_of_policy_jsons
+  number_of_policies     = var.number_of_managed_policies
 
   cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
 }
