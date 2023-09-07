@@ -16,6 +16,12 @@ variable "create_lambda_function_url" {
   default     = false
 }
 
+variable "create_lambda_role" {
+  description = "Controls whether the Lambda Role"
+  type        = bool
+  default     = true
+}
+
 ######################################
 # AWS OIDC integration GitHub Actions
 ######################################

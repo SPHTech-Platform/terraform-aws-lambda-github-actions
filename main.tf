@@ -50,6 +50,7 @@ module "lambda" {
   authorization_type                           = var.authorization_type
   cors                                         = var.cors
 
+  create_role              = var.create_lambda_role
   role_name                = var.role_name
   attach_policy_jsons      = var.attach_policy_jsons
   attach_policy_json       = var.attach_policy_json
