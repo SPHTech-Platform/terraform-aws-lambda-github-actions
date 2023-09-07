@@ -50,6 +50,7 @@ module "lambda" {
   authorization_type                           = var.authorization_type
   cors                                         = var.cors
 
+  create_role              = var.create_lambda_role
   role_name                = var.role_name
   attach_policy_jsons      = var.attach_policy_jsons
   attach_policy_json       = var.attach_policy_json
@@ -68,5 +69,6 @@ module "lambda" {
   number_of_policy_jsons = var.number_of_policy_jsons
   number_of_policies     = var.number_of_managed_policies
 
+  use_existing_cloudwatch_log_group = !var.create_lambda_cloudwatch_log_group
   cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
 }
