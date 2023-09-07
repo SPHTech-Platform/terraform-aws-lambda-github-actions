@@ -69,5 +69,6 @@ module "lambda" {
   number_of_policy_jsons = var.number_of_policy_jsons
   number_of_policies     = var.number_of_managed_policies
 
+  use_existing_cloudwatch_log_group = !var.create_lambda_cloudwatch_log_group
   cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
 }

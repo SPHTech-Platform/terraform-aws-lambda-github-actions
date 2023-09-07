@@ -22,6 +22,12 @@ variable "create_lambda_role" {
   default     = true
 }
 
+variable "create_lambda_cloudwatch_log_group" {
+  description = "Controls whether the Lambda Role"
+  type        = bool
+  default     = true
+}
+
 ######################################
 # AWS OIDC integration GitHub Actions
 ######################################
