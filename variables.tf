@@ -87,18 +87,6 @@ variable "runtime" {
   default     = "nodejs18.x"
 }
 
-variable "has_existing_code" {
-  description = "Whether to overwrite the package directory"
-  type        = bool
-  default     = false
-}
-
-variable "local_code_path" {
-  description = "local code path"
-  type        = string
-  default     = "./"
-}
-
 variable "lambda_role" {
   description = " IAM role ARN attached to the Lambda Function. This governs both who / what can invoke your Lambda Function, as well as what resources our Lambda Function has access to. See Lambda Permission Model for more details."
   type        = string
