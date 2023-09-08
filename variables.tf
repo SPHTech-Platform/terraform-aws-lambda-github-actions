@@ -10,6 +10,12 @@ variable "create_github_actions_role" {
   default     = true
 }
 
+variable "create_lambda" {
+  description = "Controls whether the Lambda"
+  type        = bool
+  default     = true
+}
+
 variable "create_lambda_function_url" {
   description = "Controls whether the Lambda Function URL resource should be created"
   type        = bool
@@ -79,6 +85,18 @@ variable "runtime" {
   description = "Lambda Function runtime"
   type        = string
   default     = "nodejs18.x"
+}
+
+variable "has_existing_code" {
+  description = "Whether to overwrite the package directory"
+  type        = bool
+  default     = false
+}
+
+variable "local_code_path" {
+  description = "local code path"
+  type        = string
+  default     = "./"
 }
 
 variable "lambda_role" {

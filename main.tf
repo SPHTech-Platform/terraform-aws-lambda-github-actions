@@ -15,7 +15,8 @@ module "lambda" {
   description   = var.description
   lambda_role   = var.lambda_role
 
-  create_package = false
+  create_package  = false
+  create_function = var.create_lambda
 
   lambda_at_edge = var.lambda_at_edge
   handler        = var.handler
@@ -61,7 +62,7 @@ module "lambda" {
   ignore_source_code_hash = true
 
   # dummy package, package is delegated to CI pipeline
-  local_existing_package = data.archive_file.dummy.output_path
+  local_existing_package = var.has_existing_code ? null : data.archive_file.dummy.output_path
   policies               = var.managed_policy_arns
   policy_jsons           = var.policy_jsons
   policy_json            = var.policy_json
