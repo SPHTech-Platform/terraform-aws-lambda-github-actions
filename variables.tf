@@ -117,6 +117,12 @@ variable "ephemeral_storage_size" {
   default     = 512
 }
 
+variable "has_existing_code_in_lambda" {
+  description = "Control to avoid overwriting imported filename"
+  type        = bool
+  default     = false
+}
+
 variable "publish" {
   description = "Whether to publish creation/change as new Lambda Function Version."
   type        = bool
