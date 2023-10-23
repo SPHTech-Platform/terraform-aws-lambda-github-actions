@@ -51,7 +51,7 @@ data "aws_iam_policy_document" "update_lambda_edge" {
   dynamic "statement" {
     for_each = var.cf_distribution_id != null ? [] : [1]
     content {
-      id = "AllowCloudFrontUpdateDistributionAccess"
+      sid = "AllowCloudFrontUpdateDistributionAccess"
 
       actions = [
         "cloudfront:UpdateDistribution",
