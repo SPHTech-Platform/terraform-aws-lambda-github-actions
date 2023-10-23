@@ -5,7 +5,7 @@ module "oidc_provider" {
   count = var.create_github_actions_oidc_provider ? 1 : 0
 }
 
-module "lamda_gha" {
+module "lambda_gha" {
   source  = "philips-labs/github-oidc/aws"
   version = "~> 0.7.0"
 
