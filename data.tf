@@ -43,13 +43,13 @@ data "aws_iam_policy_document" "update_lambda_edge" {
     ]
 
     resources = [
-      "arn:aws:lambda:us-east-1:${data.aws_caller_identity.current.account_id}:function:viewer_request_${var.environment}:*",
-      "arn:aws:lambda:us-east-1:${data.aws_caller_identity.current.account_id}:function:origin_response_${var.environment}:*"
+      "arn:aws:lambda:us-east-1:${data.aws_caller_identity.current.account_id}:function:${var.function_name}:*",
+      "arn:aws:lambda:us-east-1:${data.aws_caller_identity.current.account_id}:function:${var.function_name}:*"
     ]
   }
 
   dynamic "statement" {
-    for_each = var.cf_distribution_id != null ? [0] : []
+    for_each = var.cf_distribution_id != null ? [] : [1]
     content {
       id = "AllowCloudFrontUpdateDistributionAccess"
 
