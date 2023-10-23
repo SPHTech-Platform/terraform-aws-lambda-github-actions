@@ -31,7 +31,7 @@ resource "aws_iam_role_policy" "update_lambda" {
   count = var.create_github_actions_role ? 1 : 0
 
   name_prefix = "UpdateLambda"
-  role        = module.lamda_gha[0].role.name
+  role        = module.lambda_gha[0].role.name
   policy      = data.aws_iam_policy_document.update_lambda.json
 }
 
