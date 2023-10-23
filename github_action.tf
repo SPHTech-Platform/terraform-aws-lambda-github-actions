@@ -34,3 +34,11 @@ resource "aws_iam_role_policy" "update_lambda" {
   role        = module.lamda_gha[0].role.name
   policy      = data.aws_iam_policy_document.update_lambda.json
 }
+
+resource "aws_iam_role_policy" "update_lambda_edge" {
+  count = var.create_github_actions_edge_role ? 1 : 0
+
+  name_prefix = "UpdateLambdaEdge"
+  role        = module.lambda_gha[0].role.name
+  policy      = data.aws_iam_policy_document.update_lambda_edge.json
+}

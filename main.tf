@@ -9,7 +9,7 @@ data "archive_file" "dummy" {
 
 module "lambda" {
   source  = "terraform-aws-modules/lambda/aws"
-  version = "~> 6.0.0"
+  version = "~> 6.0.1"
 
   function_name = var.function_name
   description   = var.description
@@ -62,6 +62,7 @@ module "lambda" {
 
   # dummy package, package is delegated to CI pipeline
   local_existing_package = data.archive_file.dummy.output_path
+  source_path            = var.source_path
   policies               = var.managed_policy_arns
   policy_jsons           = var.policy_jsons
   policy_json            = var.policy_json

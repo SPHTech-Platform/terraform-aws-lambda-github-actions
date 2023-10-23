@@ -32,3 +32,37 @@ data "aws_iam_policy_document" "update_lambda" {
     resources = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:${var.function_prefix}*"]
   }
 }
+
+data "aws_iam_policy_document" "update_lambda_edge" {
+  statement {
+    sid = "EnableCFReplication"
+
+    actions = [
+      "lambda:GetFunction",
+      "lambda:EnableReplication"
+    ]
+
+    resources = [
+      "arn:aws:lambda:us-east-1:${data.aws_caller_identity.current.account_id}:function:viewer_request_${var.environment}:*",
+      "arn:aws:lambda:us-east-1:${data.aws_caller_identity.current.account_id}:function:origin_response_${var.environment}:*"
+    ]
+  }
+
+  dynamic "statement" {
+    for_each = var.cf_distribution_id != null ? [0] : []
+    content {
+      id = "AllowCloudFrontUpdateDistributionAccess"
+
+      actions = [
+        "cloudfront:UpdateDistribution",
+        "cloudfront:GetDistribution",
+        "cloudfront:GetDistributionConfig"
+      ]
+
+      resources = [
+        "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/${var.cf_distribution_id}"
+      ]
+
+    }
+  }
+}

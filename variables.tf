@@ -16,6 +16,12 @@ variable "create_lambda_function_url" {
   default     = false
 }
 
+variable "create_github_actions_edge_role" {
+  description = "controls whether to create for lambda edge functions"
+  type        = bool
+  default     = false
+}
+
 variable "create_lambda_role" {
   description = "Controls whether the Lambda Role"
   type        = bool
@@ -207,6 +213,12 @@ variable "snap_start" {
   default     = false
 }
 
+variable "source_path" {
+  description = "The absolute path to a local file or directory containing your Lambda source code"
+  type        = string
+  default     = null
+}
+
 ############################################
 # Lambda Permissions (for allowed triggers)
 ############################################
@@ -331,4 +343,14 @@ variable "cloudwatch_logs_retention_in_days" {
   description = "Number of days the cloudwatch logs will be retained. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, and 3653."
   type        = number
   default     = 7
+}
+
+#############################
+# CloudFront (Edge Functions)
+#############################
+
+variable "cf_distribution_id" {
+  description = "distribution id to allow oidc role to update edge functions that are attached"
+  type        = string
+  default     = ""
 }
