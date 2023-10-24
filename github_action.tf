@@ -5,7 +5,7 @@ module "oidc_provider" {
   count = var.create_github_actions_oidc_provider ? 1 : 0
 }
 
-module "lamda_gha" {
+module "lambda_gha" {
   source  = "philips-labs/github-oidc/aws"
   version = "~> 0.7.0"
 
@@ -27,10 +27,23 @@ module "lamda_gha" {
   ] : []
 }
 
+moved {
+  from = module.lamda_gha
+  to   = module.lambda_gha
+}
+
 resource "aws_iam_role_policy" "update_lambda" {
   count = var.create_github_actions_role ? 1 : 0
 
   name_prefix = "UpdateLambda"
-  role        = module.lamda_gha[0].role.name
+  role        = module.lambda_gha[0].role.name
   policy      = data.aws_iam_policy_document.update_lambda.json
+}
+
+resource "aws_iam_role_policy" "update_lambda_edge" {
+  count = var.create_github_actions_edge_role ? 1 : 0
+
+  name_prefix = "UpdateLambdaEdge"
+  role        = module.lambda_gha[0].role.name
+  policy      = data.aws_iam_policy_document.update_lambda_edge.json
 }
