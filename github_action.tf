@@ -27,6 +27,11 @@ module "lambda_gha" {
   ] : []
 }
 
+moved {
+  from = module.lamda_gha
+  to   = module.lambda_gha
+}
+
 resource "aws_iam_role_policy" "update_lambda" {
   count = var.create_github_actions_role ? 1 : 0
 
