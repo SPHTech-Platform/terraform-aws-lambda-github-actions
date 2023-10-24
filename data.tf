@@ -39,7 +39,7 @@ data "aws_iam_policy_document" "update_lambda_edge" {
 
     actions = [
       "lambda:GetFunction",
-      "lambda:EnableReplication"
+      "lambda:EnableReplication",
     ]
 
     resources = [
