@@ -352,5 +352,5 @@ variable "cloudwatch_logs_retention_in_days" {
 variable "cf_distribution_id" {
   description = "distribution id to allow oidc role to update edge functions that are attached"
   type        = string
-  default     = ""
+  default     = null
 }
