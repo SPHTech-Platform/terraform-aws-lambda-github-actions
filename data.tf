@@ -56,7 +56,7 @@ data "aws_iam_policy_document" "update_lambda_edge" {
       actions = [
         "cloudfront:UpdateDistribution",
         "cloudfront:GetDistribution",
-        "cloudfront:GetDistributionConfig"
+        "cloudfront:GetDistributionConfig",
       ]
 
       resources = [
