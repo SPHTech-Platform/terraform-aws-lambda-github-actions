@@ -33,6 +33,7 @@ module "lambda" {
   timeout                        = var.timeout
   dead_letter_target_arn         = var.dead_letter_target_arn
   tracing_mode                   = var.tracing_mode
+  attach_tracing_policy          = var.attach_tracing_policy
   vpc_subnet_ids                 = var.vpc_subnet_ids
   vpc_security_group_ids         = var.vpc_security_group_ids
   package_type                   = var.package_type
