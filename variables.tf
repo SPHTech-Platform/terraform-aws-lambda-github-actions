@@ -159,6 +159,12 @@ variable "tracing_mode" {
   default     = null
 }
 
+variable "attach_tracing_policy" {
+  description = "whether to attach tracing policy to lambda role"
+  type        = bool
+  default     = false
+}
+
 variable "environment_variables" {
   description = "A map that defines environment variables for the Lambda Function."
   type        = map(string)
