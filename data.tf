@@ -73,13 +73,27 @@ data "aws_iam_policy_document" "sign_code" {
 
     actions = [
       "s3:PutObject",
+      "s3:PutObjectTagging",
       "s3:PutObjectAcl",
       "s3:DeleteObject",
       "s3:GetObject",
+      "s3:GetObjectTagging",
     ]
 
     resources = [
       "arn:aws:s3:::${var.signing_bucket_name}/*",
+    ]
+  }
+
+  statement {
+    sid = "ListBucket"
+
+    actions = [
+      "s3:ListBucket",
+    ]
+
+    resources = [
+      "arn:aws:s3:::${var.signing_bucket_name}",
     ]
   }
 
@@ -89,6 +103,7 @@ data "aws_iam_policy_document" "sign_code" {
     actions = [
       "signer:StartSigningJob",
       "signer:DescribeSigningJob",
+      "signer:ListSigningJobs",
       "signer:GetSigningProfile",
     ]
 
