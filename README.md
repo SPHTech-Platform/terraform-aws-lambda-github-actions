@@ -1,4 +1,3 @@
-<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -118,4 +117,3 @@
 | <a name="output_lambda_role_name"></a> [lambda\_role\_name](#output\_lambda\_role\_name) | The name of the IAM role created for the Lambda Function |
 | <a name="output_lambda_role_unique_id"></a> [lambda\_role\_unique\_id](#output\_lambda\_role\_unique\_id) | The unique id of the IAM role created for the Lambda Function |
 | <a name="output_qualified_arn"></a> [qualified\_arn](#output\_qualified\_arn) | The qualified arn of the lambda function to be associated with Cloudfront as a Lambda@Edge function |
-<!-- END_TF_DOCS -->
