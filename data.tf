@@ -66,3 +66,34 @@ data "aws_iam_policy_document" "update_lambda_edge" {
     }
   }
 }
+
+data "aws_iam_policy_document" "sign_code" {
+  statement {
+    sid = "UploadToS3"
+
+    actions = [
+      "s3:PutObject",
+      "s3:PutObjectAcl",
+      "s3:DeleteObject",
+      "s3:GetObject",
+    ]
+
+    resources = [
+      "arn:aws:s3:::${var.signing_bucket_name}/*",
+    ]
+  }
+
+  statement {
+    sid = "SignCode"
+
+    actions = [
+      "signer:StartSigningJob",
+      "signer:DescribeSigningJob",
+      "signer:GetSigningProfile",
+    ]
+
+    resources = [
+      "arn:aws:signer:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:profile/${var.signer_profile_name}",
+    ]
+  }
+}
