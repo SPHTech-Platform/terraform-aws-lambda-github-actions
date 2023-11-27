@@ -354,8 +354,8 @@ variable "signing_bucket_name" {
   default     = null
 }
 
-variable "signer_profile_name" {
-  description = "Name of the signer profile to use for signing job"
+variable "signing_profile_name" {
+  description = "Name of the signer signing profile to use for signing job"
   type        = string
   default     = null
 }

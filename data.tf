@@ -108,7 +108,7 @@ data "aws_iam_policy_document" "sign_code" {
     ]
 
     resources = [
-      "arn:aws:signer:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:profile/${var.signer_profile_name}",
+      "arn:aws:signer:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:/signing-profiles/${var.signing_profile_name}",
     ]
   }
 }
