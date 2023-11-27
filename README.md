@@ -10,8 +10,8 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_archive"></a> [archive](#provider\_archive) | ~> 2.3.0 |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.27 |
+| <a name="provider_archive"></a> [archive](#provider\_archive) | 2.3.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.26.0 |
 
 ## Modules
 
@@ -91,8 +91,8 @@
 | <a name="input_reserved_concurrent_executions"></a> [reserved\_concurrent\_executions](#input\_reserved\_concurrent\_executions) | The amount of reserved concurrent executions for this Lambda Function. A value of 0 disables Lambda Function from being triggered and -1 removes any concurrency limitations. Defaults to Unreserved Concurrency Limits -1. | `number` | `-1` | no |
 | <a name="input_role_name"></a> [role\_name](#input\_role\_name) | Name of IAM role to use for Lambda Function. | `string` | `null` | no |
 | <a name="input_runtime"></a> [runtime](#input\_runtime) | Lambda Function runtime | `string` | `"nodejs18.x"` | no |
-| <a name="input_signer_profile_name"></a> [signer\_profile\_name](#input\_signer\_profile\_name) | Name of the signer profile to use for signing job | `string` | `null` | no |
 | <a name="input_signing_bucket_name"></a> [signing\_bucket\_name](#input\_signing\_bucket\_name) | Name of the S3 bucket to store code for signing job | `string` | `null` | no |
+| <a name="input_signing_profile_name"></a> [signing\_profile\_name](#input\_signing\_profile\_name) | Name of the signer signing profile to use for signing job | `string` | `null` | no |
 | <a name="input_snap_start"></a> [snap\_start](#input\_snap\_start) | (Optional) Snap start settings for low-latency startups | `bool` | `false` | no |
 | <a name="input_source_path"></a> [source\_path](#input\_source\_path) | The absolute path to a local file or directory containing your Lambda source code | `string` | `null` | no |
 | <a name="input_timeout"></a> [timeout](#input\_timeout) | The amount of time your Lambda Function has to run in seconds. | `number` | `3` | no |
