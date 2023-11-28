@@ -1,5 +1,3 @@
-## Requirements
-
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
@@ -10,8 +8,8 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_archive"></a> [archive](#provider\_archive) | 2.3.0 |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.26.0 |
+| <a name="provider_archive"></a> [archive](#provider\_archive) | ~> 2.3.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.27 |
 
 ## Modules
 

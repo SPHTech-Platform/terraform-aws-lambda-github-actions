@@ -72,12 +72,13 @@ data "aws_iam_policy_document" "sign_code" {
     sid = "UploadToS3"
 
     actions = [
-      "s3:PutObject",
       "s3:PutObjectTagging",
       "s3:PutObjectAcl",
-      "s3:DeleteObject",
-      "s3:GetObject",
+      "s3:PutObject",
+      "s3:GetObjectVersion",
       "s3:GetObjectTagging",
+      "s3:GetObject",
+      "s3:DeleteObject",
     ]
 
     resources = [
@@ -90,6 +91,7 @@ data "aws_iam_policy_document" "sign_code" {
 
     actions = [
       "s3:ListBucket",
+      "s3:ListBucketVersions",
     ]
 
     resources = [
@@ -98,12 +100,24 @@ data "aws_iam_policy_document" "sign_code" {
   }
 
   statement {
+    sid = "ListDescribeSigningJob"
+
+    actions = [
+      "signer:DescribeSigningJob",
+      "signer:ListSigningJobs",
+      "signer:ListSigningProfiles",
+    ]
+
+    resources = [
+      "*",
+    ]
+  }
+
+  statement {
     sid = "SignCode"
 
     actions = [
       "signer:StartSigningJob",
-      "signer:DescribeSigningJob",
-      "signer:ListSigningJobs",
       "signer:GetSigningProfile",
     ]
 
