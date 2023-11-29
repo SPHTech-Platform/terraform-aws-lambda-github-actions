@@ -47,3 +47,11 @@ resource "aws_iam_role_policy" "update_lambda_edge" {
   role        = module.lambda_gha[0].role.name
   policy      = data.aws_iam_policy_document.update_lambda_edge.json
 }
+
+resource "aws_iam_role_policy" "sign_code" {
+  count = var.create_github_actions_signed_code_role ? 1 : 0
+
+  name_prefix = "SignCode"
+  role        = module.lambda_gha[0].role.name
+  policy      = data.aws_iam_policy_document.sign_code.json
+}

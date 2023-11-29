@@ -17,7 +17,13 @@ variable "create_lambda_function_url" {
 }
 
 variable "create_github_actions_edge_role" {
-  description = "controls whether to create for lambda edge functions"
+  description = "Controls whether to create for lambda edge functions"
+  type        = bool
+  default     = false
+}
+
+variable "create_github_actions_signed_code_role" {
+  description = "Controls whether to grant s3 access and signer access to GitHub Actions"
   type        = bool
   default     = false
 }
@@ -340,6 +346,18 @@ variable "number_of_managed_policies" {
   description = "Number of AWS managed policies to attach to IAM role for Lambda Function"
   type        = number
   default     = 0
+}
+
+variable "signing_bucket_name" {
+  description = "Name of the S3 bucket to store code for signing job"
+  type        = string
+  default     = null
+}
+
+variable "signing_profile_name" {
+  description = "Name of the signer signing profile to use for signing job"
+  type        = string
+  default     = null
 }
 
 ##################

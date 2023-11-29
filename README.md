@@ -1,5 +1,3 @@
-## Requirements
-
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
@@ -25,11 +23,13 @@
 
 | Name | Type |
 |------|------|
+| [aws_iam_role_policy.sign_code](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
 | [aws_iam_role_policy.update_lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
 | [aws_iam_role_policy.update_lambda_edge](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
 | [archive_file.dummy](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file) | data source |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_openid_connect_provider.github](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_openid_connect_provider) | data source |
+| [aws_iam_policy_document.sign_code](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.update_lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.update_lambda_edge](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
@@ -52,9 +52,10 @@
 | <a name="input_code_signing_config_arn"></a> [code\_signing\_config\_arn](#input\_code\_signing\_config\_arn) | Amazon Resource Name (ARN) for a Code Signing Configuration | `string` | `null` | no |
 | <a name="input_cors"></a> [cors](#input\_cors) | CORS settings to be used by the Lambda Function URL | `any` | `{}` | no |
 | <a name="input_create_current_version_allowed_triggers"></a> [create\_current\_version\_allowed\_triggers](#input\_create\_current\_version\_allowed\_triggers) | Whether to allow triggers on current version of Lambda Function (this will revoke permissions from previous version because Terraform manages only current resources) | `bool` | `true` | no |
-| <a name="input_create_github_actions_edge_role"></a> [create\_github\_actions\_edge\_role](#input\_create\_github\_actions\_edge\_role) | controls whether to create for lambda edge functions | `bool` | `false` | no |
+| <a name="input_create_github_actions_edge_role"></a> [create\_github\_actions\_edge\_role](#input\_create\_github\_actions\_edge\_role) | Controls whether to create for lambda edge functions | `bool` | `false` | no |
 | <a name="input_create_github_actions_oidc_provider"></a> [create\_github\_actions\_oidc\_provider](#input\_create\_github\_actions\_oidc\_provider) | Controls Whether to create openid connect provider. | `bool` | `false` | no |
 | <a name="input_create_github_actions_role"></a> [create\_github\_actions\_role](#input\_create\_github\_actions\_role) | Controls whether to create AWS OIDC integration GitHub Actions | `bool` | `true` | no |
+| <a name="input_create_github_actions_signed_code_role"></a> [create\_github\_actions\_signed\_code\_role](#input\_create\_github\_actions\_signed\_code\_role) | Controls whether to grant s3 access and signer access to GitHub Actions | `bool` | `false` | no |
 | <a name="input_create_lambda_cloudwatch_log_group"></a> [create\_lambda\_cloudwatch\_log\_group](#input\_create\_lambda\_cloudwatch\_log\_group) | Controls whether the Lambda Role | `bool` | `true` | no |
 | <a name="input_create_lambda_function_url"></a> [create\_lambda\_function\_url](#input\_create\_lambda\_function\_url) | Controls whether the Lambda Function URL resource should be created | `bool` | `false` | no |
 | <a name="input_create_lambda_role"></a> [create\_lambda\_role](#input\_create\_lambda\_role) | Controls whether the Lambda Role | `bool` | `true` | no |
@@ -88,6 +89,8 @@
 | <a name="input_reserved_concurrent_executions"></a> [reserved\_concurrent\_executions](#input\_reserved\_concurrent\_executions) | The amount of reserved concurrent executions for this Lambda Function. A value of 0 disables Lambda Function from being triggered and -1 removes any concurrency limitations. Defaults to Unreserved Concurrency Limits -1. | `number` | `-1` | no |
 | <a name="input_role_name"></a> [role\_name](#input\_role\_name) | Name of IAM role to use for Lambda Function. | `string` | `null` | no |
 | <a name="input_runtime"></a> [runtime](#input\_runtime) | Lambda Function runtime | `string` | `"nodejs18.x"` | no |
+| <a name="input_signing_bucket_name"></a> [signing\_bucket\_name](#input\_signing\_bucket\_name) | Name of the S3 bucket to store code for signing job | `string` | `null` | no |
+| <a name="input_signing_profile_name"></a> [signing\_profile\_name](#input\_signing\_profile\_name) | Name of the signer signing profile to use for signing job | `string` | `null` | no |
 | <a name="input_snap_start"></a> [snap\_start](#input\_snap\_start) | (Optional) Snap start settings for low-latency startups | `bool` | `false` | no |
 | <a name="input_source_path"></a> [source\_path](#input\_source\_path) | The absolute path to a local file or directory containing your Lambda source code | `string` | `null` | no |
 | <a name="input_timeout"></a> [timeout](#input\_timeout) | The amount of time your Lambda Function has to run in seconds. | `number` | `3` | no |
