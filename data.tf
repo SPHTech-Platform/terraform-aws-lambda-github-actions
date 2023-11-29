@@ -69,6 +69,8 @@ data "aws_iam_policy_document" "update_lambda_edge" {
 
 data "aws_iam_policy_document" "sign_code" {
   #checkov:skip=CKV_AWS_356:Ensure no IAM policies documents allow "*" as a statement's resource for restrictable actions
+  count = var.create_github_actions_signed_code_role ? 1 : 0
+
   statement {
     sid = "UploadToS3"
 

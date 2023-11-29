@@ -53,5 +53,5 @@ resource "aws_iam_role_policy" "sign_code" {
 
   name_prefix = "SignCode"
   role        = module.lambda_gha[0].role.name
-  policy      = data.aws_iam_policy_document.sign_code.json
+  policy      = data.aws_iam_policy_document.sign_code[0].json
 }
