@@ -68,6 +68,7 @@ data "aws_iam_policy_document" "update_lambda_edge" {
 }
 
 data "aws_iam_policy_document" "sign_code" {
+  #checkov:skip=CKV_AWS_356:Ensure no IAM policies documents allow "*" as a statement's resource for restrictable actions
   statement {
     sid = "UploadToS3"
 
@@ -100,16 +101,28 @@ data "aws_iam_policy_document" "sign_code" {
   }
 
   statement {
-    sid = "ListDescribeSigningJob"
+    sid = "ListSignerSigningProfileJobs"
 
+    # These action only support all the resources wildcard "*"
     actions = [
-      "signer:DescribeSigningJob",
       "signer:ListSigningJobs",
       "signer:ListSigningProfiles",
     ]
 
     resources = [
       "*",
+    ]
+  }
+
+  statement {
+    sid = "DescribeSigningJob"
+
+    actions = [
+      "signer:DescribeSigningJob",
+    ]
+
+    resources = [
+      "arn:aws:signer:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:/signing-jobs/*",
     ]
   }
 
