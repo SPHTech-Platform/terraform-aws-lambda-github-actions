@@ -40,6 +40,12 @@ variable "create_lambda_cloudwatch_log_group" {
   default     = true
 }
 
+variable "recreate_missing_package" {
+  description = "Controls whether to recreate the package if it is missing"
+  type        = bool
+  default     = true
+}
+
 ######################################
 # AWS OIDC integration GitHub Actions
 ######################################

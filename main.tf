@@ -62,14 +62,15 @@ module "lambda" {
   ignore_source_code_hash = true
 
   # dummy package, package is delegated to CI pipeline
-  local_existing_package = data.archive_file.dummy.output_path
-  source_path            = var.source_path
-  policies               = var.managed_policy_arns
-  policy_jsons           = var.policy_jsons
-  policy_json            = var.policy_json
-  policy_statements      = var.policy_statements
-  number_of_policy_jsons = var.number_of_policy_jsons
-  number_of_policies     = var.number_of_managed_policies
+  local_existing_package   = data.archive_file.dummy.output_path
+  recreate_missing_package = var.recreate_missing_package
+  source_path              = var.source_path
+  policies                 = var.managed_policy_arns
+  policy_jsons             = var.policy_jsons
+  policy_json              = var.policy_json
+  policy_statements        = var.policy_statements
+  number_of_policy_jsons   = var.number_of_policy_jsons
+  number_of_policies       = var.number_of_managed_policies
 
   use_existing_cloudwatch_log_group = !var.create_lambda_cloudwatch_log_group
   cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
