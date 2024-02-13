@@ -247,7 +247,7 @@ variable "logging_info" {
 
   default = {
     application_log_level = ""
-    log_format            = "TEXT"
+    log_format            = "Text"
     log_group             = null
     system_log_level      = null
   }
