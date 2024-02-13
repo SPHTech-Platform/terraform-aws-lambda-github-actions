@@ -80,10 +80,10 @@
 | <a name="input_lambda_at_edge"></a> [lambda\_at\_edge](#input\_lambda\_at\_edge) | Set this to true if using Lambda@Edge, to enable publishing, limit the timeout, and allow edgelambda.amazonaws.com to invoke the function | `bool` | `false` | no |
 | <a name="input_lambda_role"></a> [lambda\_role](#input\_lambda\_role) | IAM role ARN attached to the Lambda Function. This governs both who / what can invoke your Lambda Function, as well as what resources our Lambda Function has access to. See Lambda Permission Model for more details. | `string` | `""` | no |
 | <a name="input_layers"></a> [layers](#input\_layers) | List of Lambda Layer Version ARNs (maximum of 5) to attach to your Lambda Function. | `list(string)` | `null` | no |
-| <a name="input_logging_application_log_level"></a> [logging\_application\_log\_level](#input\_logging\_application\_log\_level) | n/a | `string` | `null` | no |
-| <a name="input_logging_log_format"></a> [logging\_log\_format](#input\_logging\_log\_format) | n/a | `string` | `"Text"` | no |
-| <a name="input_logging_log_group"></a> [logging\_log\_group](#input\_logging\_log\_group) | n/a | `string` | `null` | no |
-| <a name="input_logging_system_log_level"></a> [logging\_system\_log\_level](#input\_logging\_system\_log\_level) | n/a | `string` | `null` | no |
+| <a name="input_logging_application_log_level"></a> [logging\_application\_log\_level](#input\_logging\_application\_log\_level) | The application log level of your lambda | `string` | `null` | no |
+| <a name="input_logging_log_format"></a> [logging\_log\_format](#input\_logging\_log\_format) | Logging format of your lambda | `string` | `"Text"` | no |
+| <a name="input_logging_log_group"></a> [logging\_log\_group](#input\_logging\_log\_group) | Log group that your lambda will use | `string` | `null` | no |
+| <a name="input_logging_system_log_level"></a> [logging\_system\_log\_level](#input\_logging\_system\_log\_level) | System log level of your lambda | `string` | `null` | no |
 | <a name="input_managed_policy_arns"></a> [managed\_policy\_arns](#input\_managed\_policy\_arns) | List of AWS managed policies to attach to IAM role for Lambda Function | `list(string)` | `null` | no |
 | <a name="input_memory_size"></a> [memory\_size](#input\_memory\_size) | Amount of memory in MB your Lambda Function can use at runtime. Valid value between 128 MB to 10,240 MB (10 GB), in 64 MB increments. | `number` | `128` | no |
 | <a name="input_number_of_managed_policies"></a> [number\_of\_managed\_policies](#input\_number\_of\_managed\_policies) | Number of AWS managed policies to attach to IAM role for Lambda Function | `number` | `0` | no |
