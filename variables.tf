@@ -237,6 +237,42 @@ variable "source_path" {
   default     = null
 }
 
+variable "logging_application_log_level" {
+  type        = string
+  description = "The application log level of your lambda"
+  default     = null
+  validation {
+    condition     = var.logging_application_log_level == null ? true : contains(["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"], var.logging_application_log_level)
+    error_message = "Valid values for logging_info.application_log_level are (TRACE, DEBUG, INFO, WARN, ERROR, FATAL)."
+  }
+}
+
+variable "logging_log_format" {
+  type        = string
+  description = "Logging format of your lambda"
+  default     = "Text"
+  validation {
+    condition     = contains(["JSON", "Text"], var.logging_log_format)
+    error_message = "Valid values for logging_info.log_format are (JSON, Text)."
+  }
+}
+
+variable "logging_log_group" {
+  type        = string
+  description = "Log group that your lambda will use"
+  default     = null
+}
+
+variable "logging_system_log_level" {
+  type        = string
+  description = "System log level of your lambda"
+  default     = null
+  validation {
+    condition     = var.logging_system_log_level == null ? true : contains(["DEBUG", "INFO", "WARN", null], var.logging_system_log_level)
+    error_message = "Valid values for logging_info.system_log_level are (DEBUG, INFO, WARN)."
+  }
+}
+
 ############################################
 # Lambda Permissions (for allowed triggers)
 ############################################
