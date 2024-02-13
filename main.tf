@@ -75,8 +75,8 @@ module "lambda" {
   use_existing_cloudwatch_log_group = !var.create_lambda_cloudwatch_log_group
   cloudwatch_logs_retention_in_days = var.cloudwatch_logs_retention_in_days
 
-  logging_application_log_level = var.logging_info.application_log_level
-  logging_log_format            = var.logging_info.log_format
-  logging_log_group             = var.logging_info.log_group
-  logging_system_log_level      = var.logging_info.system_log_level
+  logging_application_log_level = var.logging_application_log_level
+  logging_log_format            = var.logging_log_format
+  logging_log_group             = var.logging_log_group
+  logging_system_log_level      = var.logging_system_log_level
 }
