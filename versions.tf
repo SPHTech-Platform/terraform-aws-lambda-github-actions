@@ -5,7 +5,7 @@ terraform {
     # tflint-ignore: terraform_unused_required_providers
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 4.27"
+      version = ">= 5.32"
     }
     archive = {
       source  = "hashicorp/archive"
