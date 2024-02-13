@@ -239,9 +239,9 @@ variable "source_path" {
 
 variable "logging_application_log_level" {
   type    = string
-  default = "INFO"
+  default = null
   validation {
-    condition     = contains(["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"], var.logging_application_log_level)
+    condition     = contains(["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL", null], var.logging_application_log_level)
     error_message = "Valid values for logging_info.application_log_level are (TRACE, DEBUG, INFO, WARN, ERROR, FATAL)."
   }
 }
@@ -258,14 +258,14 @@ variable "logging_log_format" {
 
 variable "logging_log_group" {
   type    = string
-  default = ""
+  default = null
 }
 
 variable "logging_system_log_level" {
   type    = string
-  default = "INFO"
+  default = null
   validation {
-    condition     = contains(["DEBUG", "INFO", "WARN"], var.logging_system_log_level)
+    condition     = contains(["DEBUG", "INFO", "WARN", null], var.logging_system_log_level)
     error_message = "Valid values for logging_info.system_log_level are (DEBUG, INFO, WARN)."
   }
 }
