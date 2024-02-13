@@ -237,6 +237,22 @@ variable "source_path" {
   default     = null
 }
 
+variable "logging_info" {
+  type = object({
+    application_log_level = string
+    log_format            = string
+    log_group             = string
+    system_log_level      = string
+  })
+
+  default = {
+    application_log_level = "INFO"
+    log_format            = "JSON"
+    log_group             = null
+    system_log_level      = null
+  }
+}
+
 ############################################
 # Lambda Permissions (for allowed triggers)
 ############################################
