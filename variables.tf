@@ -241,7 +241,7 @@ variable "logging_application_log_level" {
   type    = string
   default = null
   validation {
-    condition     = contains(["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL", null], var.logging_application_log_level)
+    condition     = var.logging_application_log_level == null ? true : contains(["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"], var.logging_application_log_level)
     error_message = "Valid values for logging_info.application_log_level are (TRACE, DEBUG, INFO, WARN, ERROR, FATAL)."
   }
 }
@@ -265,7 +265,7 @@ variable "logging_system_log_level" {
   type    = string
   default = null
   validation {
-    condition     = contains(["DEBUG", "INFO", "WARN", null], var.logging_system_log_level)
+    condition     = var.logging_system_log_level == null ? true : contains(["DEBUG", "INFO", "WARN", null], var.logging_system_log_level)
     error_message = "Valid values for logging_info.system_log_level are (DEBUG, INFO, WARN)."
   }
 }
