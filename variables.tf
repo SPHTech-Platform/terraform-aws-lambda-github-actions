@@ -246,8 +246,8 @@ variable "logging_info" {
   })
 
   default = {
-    application_log_level = "INFO"
-    log_format            = "JSON"
+    application_log_level = ""
+    log_format            = "TEXT"
     log_group             = null
     system_log_level      = null
   }
