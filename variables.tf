@@ -239,17 +239,32 @@ variable "source_path" {
 
 variable "logging_info" {
   type = object({
-    application_log_level = string
-    log_format            = string
-    log_group             = string
-    system_log_level      = string
+    application_log_level = optional(string)
+    log_format            = optional(string)
+    log_group             = optional(string)
+    system_log_level      = optional(string)
   })
 
   default = {
-    application_log_level = ""
+    application_log_level = "INFO"
     log_format            = "Text"
     log_group             = null
-    system_log_level      = null
+    system_log_level      = "INFO"
+  }
+
+  validation {
+    condition     = contains(["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"], var.logging_info.application_log_level)
+    error_message = "Valid values for logging_info.application_log_level are (TRACE, DEBUG, INFO, WARN, ERROR, FATAL)."
+  }
+
+  validation {
+    condition     = contains(["JSON", "Text"], var.logging_info.log_format)
+    error_message = "Valid values for logging_info.log_format are (JSON, Text)."
+  }
+
+  validation {
+    condition     = contains(["JSON", "Text"], var.logging_info.system_log_level)
+    error_message = "Valid values for logging_info.system_log_level are (DEBUG, INFO, WARN)."
   }
 }
 
