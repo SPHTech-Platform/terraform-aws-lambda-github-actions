@@ -55,6 +55,7 @@ variable "github_repo" {
     repo         = string
     branches     = optional(list(string), [])
     environments = optional(list(string), ["*"])
+    tags         = optional(list(string), [])
 
     # Custom Role name. It will autocreate based on repo if not provided
     role_name = optional(string)
