@@ -18,12 +18,12 @@ module "lambda_gha" {
 
   default_conditions = var.default_conditions
 
-  conditions = length(var.github_repo.branches) != 0 ? [
+  conditions = length(var.github_repo.branches) > 0 || length(var.github_repo.tags) > 0 ? [
     {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values   = [for branch in var.github_repo.branches : "repo:${var.github_repo.repo}:ref:refs/heads/${branch}"]
-    },
+      values   = compact(concat([for branch in var.github_repo.branches : "repo:${var.github_repo.repo}:ref:refs/heads/${branch}"], [for tag in var.github_repo.tags : "repo:${var.github_repo.repo}:ref:refs/tags/${tag}"]))
+    }
   ] : []
 }
 
