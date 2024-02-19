@@ -141,6 +141,12 @@ variable "reserved_concurrent_executions" {
   default     = -1
 }
 
+variable "provisioned_concurrent_executions" {
+  description = "Amount of capacity to allocate. Set to 1 or greater to enable, or set to 0 to disable provisioned concurrency."
+  type        = number
+  default     = 0
+}
+
 variable "timeout" {
   description = "The amount of time your Lambda Function has to run in seconds."
   type        = number
