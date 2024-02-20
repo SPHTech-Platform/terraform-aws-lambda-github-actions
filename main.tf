@@ -30,7 +30,7 @@ module "lambda" {
   environment_variables             = var.environment_variables
   publish                           = var.publish
   reserved_concurrent_executions    = var.reserved_concurrent_executions
-  provisioned_concurrent_executions = var.provisioned_concurrent_executions
+  provisioned_concurrent_executions = var.provisioned_concurrent_executions > 0 ? var.provisioned_concurrent_executions : null
   timeout                           = var.timeout
   dead_letter_target_arn            = var.dead_letter_target_arn
   tracing_mode                      = var.tracing_mode
