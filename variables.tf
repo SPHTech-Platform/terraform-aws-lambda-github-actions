@@ -68,6 +68,18 @@ variable "default_conditions" {
   default     = ["allow_main", "allow_environment"]
 }
 
+variable "deployer_lambda_additional_permission" {
+  description = "Additional permission needed by lambda deployer in json format"
+  type        = string
+  default     = null
+}
+
+variable "deployer_lambda_edge_additional_permission" {
+  description = "Additional permission needed by lambda edge deployer in json format"
+  type        = string
+  default     = null
+}
+
 # Refer https://github.com/terraform-aws-modules/terraform-aws-lambda/blob/master/variables.tf for additional vars
 ##################
 # Lambda Function

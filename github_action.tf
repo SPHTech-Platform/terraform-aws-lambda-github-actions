@@ -37,7 +37,7 @@ resource "aws_iam_role_policy" "update_lambda" {
 
   name_prefix = "UpdateLambda"
   role        = module.lambda_gha[0].role.name
-  policy      = data.aws_iam_policy_document.update_lambda.json
+  policy      = data.aws_iam_policy_document.update_lambda_combined.json
 }
 
 resource "aws_iam_role_policy" "update_lambda_edge" {
@@ -45,7 +45,7 @@ resource "aws_iam_role_policy" "update_lambda_edge" {
 
   name_prefix = "UpdateLambdaEdge"
   role        = module.lambda_gha[0].role.name
-  policy      = data.aws_iam_policy_document.update_lambda_edge.json
+  policy      = data.aws_iam_policy_document.update_lambda_edge_combined.json
 }
 
 resource "aws_iam_role_policy" "sign_code" {
