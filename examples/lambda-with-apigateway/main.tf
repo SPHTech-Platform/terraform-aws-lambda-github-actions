@@ -19,6 +19,8 @@ module "home_feed" {
     "ENV" = "dev"
   }
 
+  deployer_lambda_additional_permission = data.aws_iam_policy_document.access_s3.json
+
   vpc_subnet_ids         = data.aws_subnets.lambda.ids
   vpc_security_group_ids = data.aws_security_groups.lambda.ids
   attach_network_policy  = true
