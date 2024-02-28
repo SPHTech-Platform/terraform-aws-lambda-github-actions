@@ -76,7 +76,7 @@ data "aws_iam_policy_document" "update_lambda_edge" {
 
 data "aws_iam_policy_document" "update_lambda_edge_combined" {
   source_policy_documents = compact([
-    data.aws_iam_policy_document.update_lambda.json,
+    data.aws_iam_policy_document.update_lambda_edge.json,
     var.deployer_lambda_edge_additional_permission
   ])
 }
