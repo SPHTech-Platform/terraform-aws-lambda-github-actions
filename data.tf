@@ -33,7 +33,7 @@ data "aws_iam_policy_document" "update_lambda" {
   }
 }
 
-data "aws_" "update_lambda_combined" {
+data "aws_iam_policy_document" "update_lambda_combined" {
   source_policy_documents = [
     data.aws_iam_policy_document.update_lambda.json,
     var.deployer_lambda_additional_permission
