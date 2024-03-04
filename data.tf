@@ -27,7 +27,9 @@ data "aws_iam_policy_document" "update_lambda" {
       "lambda:UpdateFunctionConfiguration",
       "lambda:UpdateAlias",
       "lambda:PublishVersion",
-      "lambda:PublishLayerVersion"
+      "lambda:PublishLayerVersion",
+      "lambda:PutProvisionedConcurrencyConfig",
+      "lambda:DeleteProvisionedConcurrencyConfigCommand",
     ]
     resources = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:${var.function_prefix}*"]
   }
