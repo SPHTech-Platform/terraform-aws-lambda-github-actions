@@ -259,7 +259,7 @@ variable "source_path" {
 variable "logging_application_log_level" {
   type        = string
   description = "The application log level of your lambda"
-  default     = null
+  default     = "INFO"
   validation {
     condition     = var.logging_application_log_level == null ? true : contains(["TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"], var.logging_application_log_level)
     error_message = "Valid values for logging_info.application_log_level are (TRACE, DEBUG, INFO, WARN, ERROR, FATAL)."
@@ -285,7 +285,7 @@ variable "logging_log_group" {
 variable "logging_system_log_level" {
   type        = string
   description = "System log level of your lambda"
-  default     = null
+  default     = "INFO"
   validation {
     condition     = var.logging_system_log_level == null ? true : contains(["DEBUG", "INFO", "WARN", null], var.logging_system_log_level)
     error_message = "Valid values for logging_info.system_log_level are (DEBUG, INFO, WARN)."
