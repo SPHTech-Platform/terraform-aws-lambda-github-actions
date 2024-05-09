@@ -292,6 +292,12 @@ variable "logging_system_log_level" {
   }
 }
 
+variable "event_source_mapping" {
+  description = "Map of event source mapping"
+  type        = any
+  default     = {}
+}
+
 ############################################
 # Lambda Permissions (for allowed triggers)
 ############################################

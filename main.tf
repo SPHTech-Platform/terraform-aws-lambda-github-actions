@@ -80,4 +80,6 @@ module "lambda" {
   logging_log_format            = var.logging_log_format
   logging_log_group             = var.logging_log_group
   logging_system_log_level      = var.logging_system_log_level
+
+  event_source_mapping = var.event_source_mapping
 }
