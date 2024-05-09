@@ -1,4 +1,4 @@
-<!-- BEGIN_TF_DOCS -->
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
@@ -12,7 +12,7 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_archive"></a> [archive](#provider\_archive) | 2.3.0 |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.36.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.45.0 |
 
 ## Modules
 
@@ -72,6 +72,7 @@
 | <a name="input_description"></a> [description](#input\_description) | Lambda Function Description | `string` | `""` | no |
 | <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | A map that defines environment variables for the Lambda Function. | `map(string)` | `{}` | no |
 | <a name="input_ephemeral_storage_size"></a> [ephemeral\_storage\_size](#input\_ephemeral\_storage\_size) | Amount of ephemeral storage (/tmp) in MB your Lambda Function can use at runtime. Valid value between 512 MB to 10,240 MB (10 GB). | `number` | `512` | no |
+| <a name="input_event_source_mapping"></a> [event\_source\_mapping](#input\_event\_source\_mapping) | Map of event source mapping | `any` | `{}` | no |
 | <a name="input_function_name"></a> [function\_name](#input\_function\_name) | Lambda Function Name | `string` | n/a | yes |
 | <a name="input_function_prefix"></a> [function\_prefix](#input\_function\_prefix) | Prefix for the IAM role for lambda functions | `string` | `""` | no |
 | <a name="input_github_repo"></a> [github\_repo](#input\_github\_repo) | GitHub repo to grant access to assume a role via OIDC. | <pre>object({<br>    repo         = string<br>    branches     = optional(list(string), [])<br>    environments = optional(list(string), ["*"])<br>    tags         = optional(list(string), [])<br><br>    # Custom Role name. It will autocreate based on repo if not provided<br>    role_name = optional(string)<br>  })</pre> | n/a | yes |
@@ -84,10 +85,10 @@
 | <a name="input_lambda_at_edge"></a> [lambda\_at\_edge](#input\_lambda\_at\_edge) | Set this to true if using Lambda@Edge, to enable publishing, limit the timeout, and allow edgelambda.amazonaws.com to invoke the function | `bool` | `false` | no |
 | <a name="input_lambda_role"></a> [lambda\_role](#input\_lambda\_role) | IAM role ARN attached to the Lambda Function. This governs both who / what can invoke your Lambda Function, as well as what resources our Lambda Function has access to. See Lambda Permission Model for more details. | `string` | `""` | no |
 | <a name="input_layers"></a> [layers](#input\_layers) | List of Lambda Layer Version ARNs (maximum of 5) to attach to your Lambda Function. | `list(string)` | `null` | no |
-| <a name="input_logging_application_log_level"></a> [logging\_application\_log\_level](#input\_logging\_application\_log\_level) | The application log level of your lambda | `string` | `null` | no |
+| <a name="input_logging_application_log_level"></a> [logging\_application\_log\_level](#input\_logging\_application\_log\_level) | The application log level of your lambda | `string` | `"INFO"` | no |
 | <a name="input_logging_log_format"></a> [logging\_log\_format](#input\_logging\_log\_format) | Logging format of your lambda | `string` | `"Text"` | no |
 | <a name="input_logging_log_group"></a> [logging\_log\_group](#input\_logging\_log\_group) | Log group that your lambda will use | `string` | `null` | no |
-| <a name="input_logging_system_log_level"></a> [logging\_system\_log\_level](#input\_logging\_system\_log\_level) | System log level of your lambda | `string` | `null` | no |
+| <a name="input_logging_system_log_level"></a> [logging\_system\_log\_level](#input\_logging\_system\_log\_level) | System log level of your lambda | `string` | `"INFO"` | no |
 | <a name="input_managed_policy_arns"></a> [managed\_policy\_arns](#input\_managed\_policy\_arns) | List of AWS managed policies to attach to IAM role for Lambda Function | `list(string)` | `null` | no |
 | <a name="input_memory_size"></a> [memory\_size](#input\_memory\_size) | Amount of memory in MB your Lambda Function can use at runtime. Valid value between 128 MB to 10,240 MB (10 GB), in 64 MB increments. | `number` | `128` | no |
 | <a name="input_number_of_managed_policies"></a> [number\_of\_managed\_policies](#input\_number\_of\_managed\_policies) | Number of AWS managed policies to attach to IAM role for Lambda Function | `number` | `0` | no |
@@ -128,4 +129,4 @@
 | <a name="output_lambda_role_name"></a> [lambda\_role\_name](#output\_lambda\_role\_name) | The name of the IAM role created for the Lambda Function |
 | <a name="output_lambda_role_unique_id"></a> [lambda\_role\_unique\_id](#output\_lambda\_role\_unique\_id) | The unique id of the IAM role created for the Lambda Function |
 | <a name="output_qualified_arn"></a> [qualified\_arn](#output\_qualified\_arn) | The qualified arn of the lambda function to be associated with Cloudfront as a Lambda@Edge function |
-<!-- END_TF_DOCS -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
