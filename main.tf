@@ -82,4 +82,6 @@ module "lambda" {
   logging_system_log_level      = var.logging_system_log_level
 
   event_source_mapping = var.event_source_mapping
+  tags                 = var.tags
+  function_tags        = var.function_tags
 }

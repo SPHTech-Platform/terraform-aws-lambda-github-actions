@@ -445,3 +445,15 @@ variable "cf_distribution_id" {
   type        = string
   default     = null
 }
+
+variable "tags" {
+  description = "A map of tags to assign to resources."
+  type        = map(string)
+  default     = {}
+}
+
+variable "function_tags" {
+  description = "A map of tags to assign only to the lambda function"
+  type        = map(string)
+  default     = {}
+}
