@@ -465,8 +465,8 @@ variable "enable_version_identifier" {
   default     = false
 }
 
-variable "apigw_arn" {
-  description = "API Gateway ARN"
+variable "apigw_id" {
+  description = "API Gateway Id"
   type        = string
   default     = null
 }
