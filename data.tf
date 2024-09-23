@@ -43,9 +43,7 @@ data "aws_iam_policy_document" "update_lambda" {
         "apigateway:POST",
         "apigateway:PUT",
       ]
-      resources = [
-        var.apigw_arn,
-      ]
+      resources = ["arn:aws:apigateway:${data.aws_region.current.name}::/restapis/${var.apigw_id}/*"]
     }
   }
 }
