@@ -1,4 +1,3 @@
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
@@ -12,7 +11,7 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_archive"></a> [archive](#provider\_archive) | 2.3.0 |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.45.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.37.0 |
 
 ## Modules
 
@@ -44,6 +43,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_allowed_triggers"></a> [allowed\_triggers](#input\_allowed\_triggers) | Map of allowed triggers to create Lambda permissions | `map(any)` | `{}` | no |
+| <a name="input_apigw_arn"></a> [apigw\_arn](#input\_apigw\_arn) | API Gateway ARN | `string` | `null` | no |
 | <a name="input_architectures"></a> [architectures](#input\_architectures) | Instruction set architecture for your Lambda function. Valid values are ["x86\_64"] and ["arm64"]. | `list(string)` | `null` | no |
 | <a name="input_attach_network_policy"></a> [attach\_network\_policy](#input\_attach\_network\_policy) | Flag to attach network policy to use VPC subnet and security group | `bool` | `false` | no |
 | <a name="input_attach_policies"></a> [attach\_policies](#input\_attach\_policies) | Controls whether AWS managed policies should be added to IAM role for Lambda Function (e.g AWSLambdaBasicExecutionRole) | `bool` | `false` | no |
@@ -66,16 +66,18 @@
 | <a name="input_create_lambda_role"></a> [create\_lambda\_role](#input\_create\_lambda\_role) | Controls whether the Lambda Role | `bool` | `true` | no |
 | <a name="input_create_unqualified_alias_lambda_function_url"></a> [create\_unqualified\_alias\_lambda\_function\_url](#input\_create\_unqualified\_alias\_lambda\_function\_url) | Whether to use unqualified alias pointing to $LATEST version in Lambda Function URL | `bool` | `true` | no |
 | <a name="input_dead_letter_target_arn"></a> [dead\_letter\_target\_arn](#input\_dead\_letter\_target\_arn) | The ARN of an SNS topic or SQS queue to notify when an invocation fails. | `string` | `null` | no |
-| <a name="input_default_conditions"></a> [default\_conditions](#input\_default\_conditions) | (Optional) Default condtions to apply, at least one of the following is madatory: 'allow\_main', 'allow\_environment', 'deny\_pull\_request' and 'allow\_all'. | `list(string)` | <pre>[<br>  "allow_main",<br>  "allow_environment"<br>]</pre> | no |
+| <a name="input_default_conditions"></a> [default\_conditions](#input\_default\_conditions) | (Optional) Default condtions to apply, at least one of the following is madatory: 'allow\_main', 'allow\_environment', 'deny\_pull\_request' and 'allow\_all'. | `list(string)` | <pre>[<br/>  "allow_main",<br/>  "allow_environment"<br/>]</pre> | no |
 | <a name="input_deployer_lambda_additional_permission"></a> [deployer\_lambda\_additional\_permission](#input\_deployer\_lambda\_additional\_permission) | Additional permission needed by lambda deployer in json format | `string` | `null` | no |
 | <a name="input_deployer_lambda_edge_additional_permission"></a> [deployer\_lambda\_edge\_additional\_permission](#input\_deployer\_lambda\_edge\_additional\_permission) | Additional permission needed by lambda edge deployer in json format | `string` | `null` | no |
 | <a name="input_description"></a> [description](#input\_description) | Lambda Function Description | `string` | `""` | no |
+| <a name="input_enable_version_identifier"></a> [enable\_version\_identifier](#input\_enable\_version\_identifier) | Enable version identifier for lambda function | `bool` | `false` | no |
 | <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | A map that defines environment variables for the Lambda Function. | `map(string)` | `{}` | no |
 | <a name="input_ephemeral_storage_size"></a> [ephemeral\_storage\_size](#input\_ephemeral\_storage\_size) | Amount of ephemeral storage (/tmp) in MB your Lambda Function can use at runtime. Valid value between 512 MB to 10,240 MB (10 GB). | `number` | `512` | no |
 | <a name="input_event_source_mapping"></a> [event\_source\_mapping](#input\_event\_source\_mapping) | Map of event source mapping | `any` | `{}` | no |
 | <a name="input_function_name"></a> [function\_name](#input\_function\_name) | Lambda Function Name | `string` | n/a | yes |
 | <a name="input_function_prefix"></a> [function\_prefix](#input\_function\_prefix) | Prefix for the IAM role for lambda functions | `string` | `""` | no |
-| <a name="input_github_repo"></a> [github\_repo](#input\_github\_repo) | GitHub repo to grant access to assume a role via OIDC. | <pre>object({<br>    repo         = string<br>    branches     = optional(list(string), [])<br>    environments = optional(list(string), ["*"])<br>    tags         = optional(list(string), [])<br><br>    # Custom Role name. It will autocreate based on repo if not provided<br>    role_name = optional(string)<br>  })</pre> | n/a | yes |
+| <a name="input_function_tags"></a> [function\_tags](#input\_function\_tags) | A map of tags to assign only to the lambda function | `map(string)` | `{}` | no |
+| <a name="input_github_repo"></a> [github\_repo](#input\_github\_repo) | GitHub repo to grant access to assume a role via OIDC. | <pre>object({<br/>    repo         = string<br/>    branches     = optional(list(string), [])<br/>    environments = optional(list(string), ["*"])<br/>    tags         = optional(list(string), [])<br/><br/>    # Custom Role name. It will autocreate based on repo if not provided<br/>    role_name = optional(string)<br/>  })</pre> | n/a | yes |
 | <a name="input_handler"></a> [handler](#input\_handler) | Lambda Function Index Handler | `string` | `"index.handler"` | no |
 | <a name="input_image_config_command"></a> [image\_config\_command](#input\_image\_config\_command) | The CMD for the docker image | `list(string)` | `[]` | no |
 | <a name="input_image_config_entry_point"></a> [image\_config\_entry\_point](#input\_image\_config\_entry\_point) | The ENTRYPOINT for the docker image | `list(string)` | `[]` | no |
@@ -107,6 +109,7 @@
 | <a name="input_signing_profile_name"></a> [signing\_profile\_name](#input\_signing\_profile\_name) | Name of the signer signing profile to use for signing job | `string` | `null` | no |
 | <a name="input_snap_start"></a> [snap\_start](#input\_snap\_start) | (Optional) Snap start settings for low-latency startups | `bool` | `false` | no |
 | <a name="input_source_path"></a> [source\_path](#input\_source\_path) | The absolute path to a local file or directory containing your Lambda source code | `string` | `null` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to assign to resources. | `map(string)` | `{}` | no |
 | <a name="input_timeout"></a> [timeout](#input\_timeout) | The amount of time your Lambda Function has to run in seconds. | `number` | `3` | no |
 | <a name="input_tracing_mode"></a> [tracing\_mode](#input\_tracing\_mode) | Tracing mode of the Lambda Function. Valid value can be either PassThrough or Active. | `string` | `null` | no |
 | <a name="input_vpc_security_group_ids"></a> [vpc\_security\_group\_ids](#input\_vpc\_security\_group\_ids) | List of security group ids when Lambda Function should run in the VPC. | `list(string)` | `null` | no |
@@ -129,4 +132,3 @@
 | <a name="output_lambda_role_name"></a> [lambda\_role\_name](#output\_lambda\_role\_name) | The name of the IAM role created for the Lambda Function |
 | <a name="output_lambda_role_unique_id"></a> [lambda\_role\_unique\_id](#output\_lambda\_role\_unique\_id) | The unique id of the IAM role created for the Lambda Function |
 | <a name="output_qualified_arn"></a> [qualified\_arn](#output\_qualified\_arn) | The qualified arn of the lambda function to be associated with Cloudfront as a Lambda@Edge function |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
