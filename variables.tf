@@ -457,3 +457,16 @@ variable "function_tags" {
   type        = map(string)
   default     = {}
 }
+
+# to allow deployments with api gateway triggers and update version whenever there is new deployment
+variable "enable_version_identifier" {
+  description = "Enable version identifier for lambda function"
+  type        = bool
+  default     = false
+}
+
+variable "apigw_id" {
+  description = "API Gateway Id"
+  type        = string
+  default     = null
+}

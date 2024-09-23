@@ -23,6 +23,7 @@ data "aws_iam_policy_document" "update_lambda" {
     sid = "LambdaUpdateEvent"
 
     actions = [
+      "lambda:AddPermission",
       "lambda:UpdateFunctionCode",
       "lambda:UpdateFunctionConfiguration",
       "lambda:UpdateAlias",
@@ -32,6 +33,18 @@ data "aws_iam_policy_document" "update_lambda" {
       "lambda:DeleteProvisionedConcurrencyConfig",
     ]
     resources = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:${var.function_prefix}*"]
+  }
+
+  dynamic "statement" {
+    for_each = var.enable_version_identifier ? [1] : []
+    content {
+      sid = "AllowApiGatewayInvoke"
+      actions = [
+        "apigateway:POST",
+        "apigateway:PUT",
+      ]
+      resources = ["arn:aws:apigateway:${data.aws_region.current.name}::/restapis/${var.apigw_id}/*"]
+    }
   }
 }
 
