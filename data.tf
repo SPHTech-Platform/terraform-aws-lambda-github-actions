@@ -26,6 +26,7 @@ data "aws_iam_policy_document" "update_lambda" {
       "lambda:UpdateFunctionCode",
       "lambda:UpdateFunctionConfiguration",
       "lambda:UpdateAlias",
+      "lambda:CreateAlias",
       "lambda:PublishVersion",
       "lambda:PublishLayerVersion",
       "lambda:PutProvisionedConcurrencyConfig",
