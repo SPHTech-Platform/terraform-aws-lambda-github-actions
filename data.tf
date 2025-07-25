@@ -57,6 +57,17 @@ data "aws_iam_policy_document" "update_lambda" {
       resources = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:${var.function_prefix}*"]
     }
   }
+
+  dynamic "statement" {
+    for_each = var.enable_version_identifier ? [1] : []
+    content {
+      sid = "AllowLambdaUpdateEvtSrcMapping"
+      actions = [
+        "lambda:UpdateEventSourceMapping",
+      ]
+      resources = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:${var.function_prefix}*"]
+    }
+  }
 }
 
 data "aws_iam_policy_document" "update_lambda_combined" {
