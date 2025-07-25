@@ -59,7 +59,7 @@ data "aws_iam_policy_document" "update_lambda" {
   }
 
   dynamic "statement" {
-    for_each = var.enable_version_identifier ? [1] : []
+    for_each = var.enable_lambda_update_evt_src_mapping ? [1] : []
     content {
       sid = "AllowLambdaUpdateEvtSrcMapping"
       actions = [
