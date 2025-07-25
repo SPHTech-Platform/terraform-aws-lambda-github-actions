@@ -470,3 +470,10 @@ variable "apigw_id" {
   type        = string
   default     = null
 }
+
+# to allow deployments with other lambda triggers and update version whenever there is new deployment
+variable "enable_lambda_update_evt_src_mapping" {
+  description = "Enable Lambda function to update it's event source mapping when there is a new deployment"
+  type        = bool
+  default     = false
+}
