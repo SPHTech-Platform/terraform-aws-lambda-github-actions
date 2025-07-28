@@ -65,7 +65,7 @@ data "aws_iam_policy_document" "update_lambda" {
       actions = [
         "lambda:UpdateEventSourceMapping",
       ]
-      resources = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:${var.function_prefix}*"]
+      resources = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:event-source-mapping:*"]
     }
   }
 }
