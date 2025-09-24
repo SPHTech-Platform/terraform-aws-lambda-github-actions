@@ -32,7 +32,7 @@ data "aws_iam_policy_document" "update_lambda" {
       "lambda:PutProvisionedConcurrencyConfig",
       "lambda:DeleteProvisionedConcurrencyConfig",
     ]
-    resources = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:${var.function_prefix}*"]
+    resources = ["arn:aws:lambda:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:function:${var.function_prefix}*"]
   }
 
   dynamic "statement" {
@@ -43,7 +43,7 @@ data "aws_iam_policy_document" "update_lambda" {
         "apigateway:POST",
         "apigateway:PUT",
       ]
-      resources = ["arn:aws:apigateway:${data.aws_region.current.name}::/restapis/${var.apigw_id}/*"]
+      resources = ["arn:aws:apigateway:${data.aws_region.current.region}::/restapis/${var.apigw_id}/*"]
     }
   }
 
@@ -54,7 +54,7 @@ data "aws_iam_policy_document" "update_lambda" {
       actions = [
         "lambda:AddPermission",
       ]
-      resources = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:${var.function_prefix}*"]
+      resources = ["arn:aws:lambda:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:function:${var.function_prefix}*"]
     }
   }
 
@@ -65,7 +65,7 @@ data "aws_iam_policy_document" "update_lambda" {
       actions = [
         "lambda:UpdateEventSourceMapping",
       ]
-      resources = ["arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:event-source-mapping:*"]
+      resources = ["arn:aws:lambda:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:event-source-mapping:*"]
     }
   }
 }
@@ -175,7 +175,7 @@ data "aws_iam_policy_document" "sign_code" {
     ]
 
     resources = [
-      "arn:aws:signer:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:/signing-jobs/*",
+      "arn:aws:signer:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:/signing-jobs/*",
     ]
   }
 
@@ -188,7 +188,7 @@ data "aws_iam_policy_document" "sign_code" {
     ]
 
     resources = [
-      "arn:aws:signer:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:/signing-profiles/${var.signing_profile_name}",
+      "arn:aws:signer:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:/signing-profiles/${var.signing_profile_name}",
     ]
   }
 }
