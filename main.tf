@@ -50,6 +50,8 @@ module "lambda" {
   create_unqualified_alias_async_event_config = var.create_unqualified_alias_async_event_config
   destination_on_failure                      = var.destination_on_failure
   destination_on_success                      = var.destination_on_success
+  maximum_event_age_in_seconds                = var.maximum_event_age_in_seconds
+  maximum_retry_attempts                      = var.maximum_retry_attempts
   allowed_triggers                            = var.allowed_triggers
 
   create_lambda_function_url                   = var.create_lambda_function_url
