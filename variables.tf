@@ -508,3 +508,15 @@ variable "destination_on_success" {
   type        = string
   default     = null
 }
+
+variable "maximum_event_age_in_seconds" {
+  description = "Maximum age of a request that Lambda sends to a function for processing in seconds. Valid values between 60 and 21600."
+  type        = number
+  default     = null
+}
+
+variable "maximum_retry_attempts" {
+  description = "Maximum number of times to retry when the function returns an error. Valid values between 0 and 2."
+  type        = number
+  default     = null
+}
