@@ -44,8 +44,13 @@ module "lambda" {
   image_config_working_directory    = var.image_config_working_directory
   snap_start                        = var.snap_start
 
-  create_current_version_allowed_triggers = var.create_current_version_allowed_triggers
-  allowed_triggers                        = var.allowed_triggers
+  create_current_version_allowed_triggers     = var.create_current_version_allowed_triggers
+  create_async_event_config                   = var.create_async_event_config
+  create_current_version_async_event_config   = var.create_current_version_async_event_config
+  create_unqualified_alias_async_event_config = var.create_unqualified_alias_async_event_config
+  destination_on_failure                      = var.destination_on_failure
+  destination_on_success                      = var.destination_on_success
+  allowed_triggers                            = var.allowed_triggers
 
   create_lambda_function_url                   = var.create_lambda_function_url
   create_unqualified_alias_lambda_function_url = var.create_unqualified_alias_lambda_function_url
