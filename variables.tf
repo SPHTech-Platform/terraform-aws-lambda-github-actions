@@ -477,3 +477,34 @@ variable "enable_lambda_update_evt_src_mapping" {
   type        = bool
   default     = false
 }
+
+// async
+variable "create_async_event_config" {
+  description = "Whether to create async event configuration for Lambda Function"
+  type        = bool
+  default     = false
+}
+
+variable "create_current_version_async_event_config" {
+  description = "Whether to create async event configuration for current version of Lambda Function (this will revoke async event configuration from previous version because Terraform manages only current resources)"
+  type        = bool
+  default     = true
+}
+
+variable "create_unqualified_alias_async_event_config" {
+  description = "Whether to create async event configuration for unqualified alias pointing to $LATEST version of Lambda Function"
+  type        = bool
+  default     = true
+}
+
+variable "destination_on_failure" {
+  description = "The Amazon Resource Name (ARN) of the destination resource for failed invocations."
+  type        = string
+  default     = null
+}
+
+variable "destination_on_success" {
+  description = "The Amazon Resource Name (ARN) of the destination resource for successful invocations."
+  type        = string
+  default     = null
+}
