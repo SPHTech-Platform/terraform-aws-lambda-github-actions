@@ -14,6 +14,7 @@ module "lambda" {
   function_name = var.function_name
   description   = var.description
   lambda_role   = var.lambda_role
+  region        = var.region
 
   create_package = false
 
